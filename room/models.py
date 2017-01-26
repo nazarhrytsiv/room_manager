@@ -10,3 +10,13 @@ class Room(models.Model):
 
     def __str__(self):
         return self.name
+
+    @staticmethod
+    def delete_by_id(id):
+        try:
+            room = Room.objects.get(pk=id)
+            room.delete()
+            return True
+        except:
+            return False
+

@@ -7,10 +7,11 @@
 		<td>{{ room.size }}</td>
     <td style="width: 150px">
         <a href="room/{{room.id }}/edit/" ><button type="button" class="btn btn-sm btn-warning">Edit</button></a>
-       <a href="room/{{room.id }}/delete/" ><button type="button"
-              class="btn btn-danger btn-sm js-delete-book">
+      <button type="button"
+              class="btn btn-danger btn-sm js-delete-book"
+              onclick="del({{room.id }})">
         <span class="glyphicon glyphicon-trash"></span> Delete
-      </button></a>
+      </button>
 
 
 
