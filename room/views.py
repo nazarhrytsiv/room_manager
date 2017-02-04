@@ -32,7 +32,7 @@ def create(request):
 
 def edit(request, pk):
     # post = get_object_or_404(Room, pk=pk)
-    post = Room.objects.filter(pk)
+    post = Room.objects.get(pk=pk)
     if request.method == "POST":
         form = RoomForm(request.POST, instance=post)
         if form.is_valid():

@@ -5,28 +5,12 @@ hi
 {% endblock %}
 
 {% block content %}
-<script type="text/javascript">
-   function del(id){
-   var _data = {
-        'id': id,
-        'name': 'test'
-   }
-    $.ajax({
-          type: "DELETE",
-          url: "delete/",
-          dataType: 'json',
-          data: JSON.stringify(_data),
-          success: function(respons){
-            console.log(respons)
-          },
 
-    });
-}
-</script>
+
       <div class="page-header">
         <h1>Rooms</h1>
       <p>
-          <a href="/room/create/" > <button type="button" class="btn btn-sm btn-primary">+ New room</button></a>
+           <button type="button" class="btn btn-sm btn-primary">+ New room</button>
       </p>
       </div>
       <div class="row">
