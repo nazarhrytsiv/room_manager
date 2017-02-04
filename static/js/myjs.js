@@ -1,5 +1,5 @@
  function del(id){
-
+   $( "#rooms" ).hide( "#rooms" );
    var _data = {
         'id': id,
         'name': name
@@ -17,6 +17,7 @@
 
     });
 }
+
 
 
 /**
