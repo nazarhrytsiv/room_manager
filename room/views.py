@@ -24,20 +24,19 @@ def create(request):
         form = RoomForm(request.POST)
         if form.is_valid():
             form.save()
-            # return redirect('post_detail', pk=create.id)
+            return redirect('/room')
     else:
         form = RoomForm()
     return render(request, 'room/create.html', {'form': form})
 
 
 def edit(request, pk):
-    # post = get_object_or_404(Room, pk=pk)
     post = Room.objects.get(pk=pk)
     if request.method == "POST":
         form = RoomForm(request.POST, instance=post)
         if form.is_valid():
             post.save()
-            return redirect('/')
+            return redirect('/room')
     else:
         form = RoomForm(instance=post)
     return render(request, 'room/edit.html', {'form': form})
