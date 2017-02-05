@@ -48,7 +48,7 @@ def delete(request):
         if Room.delete_by_id(data['id']):
             return HttpResponse(status=200)
     return HttpResponse(status=400)
-    # return render(request, 'room/delete.html', {'form': form})
+
 
 
 def show_room(request, room_id):
