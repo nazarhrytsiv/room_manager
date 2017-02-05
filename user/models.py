@@ -1,30 +1,10 @@
 from django.db import models
 
 # Create your models here.
-
-class User(models.Model):
-    username = models.CharField(max_length=30)
-    name = models.CharField(max_length=30)
-    surname = models.CharField(max_length=30)
-    email = models.EmailField()
-    password = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.username
-
-    @staticmethod
-    def delete_by_id(id):
-        try:
-            user = User.objects.get(pk=id)
-            user.delete()
-            return True
-        except:
-            return False
-
 class Group(models.Model):
     name = models.CharField(max_length=30)
     description = models.CharField(max_length=30)
-    members = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.name
@@ -34,6 +14,28 @@ class Group(models.Model):
         try:
             group = Group.objects.get(pk=id)
             group.delete()
+            return True
+        except:
+            return False
+
+
+
+
+class User(models.Model):
+    username = models.CharField(max_length=30)
+    name = models.CharField(max_length=30)
+
+    email = models.EmailField()
+    password = models.CharField(max_length=30)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, default=None)
+    def __str__(self):
+        return self.username
+
+    @staticmethod
+    def delete_by_id(id):
+        try:
+            user = User.objects.get(pk=id)
+            user.delete()
             return True
         except:
             return False
