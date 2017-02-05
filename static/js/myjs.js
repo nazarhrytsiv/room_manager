@@ -1,8 +1,4 @@
  function del(id){
-    $( this ).hide();
-    $( "#lessons" ).hide( "slow" );
-    $( "#rooms" ).hide( "slow" );
-
    var _data = {
         'id': id,
         'name': name
@@ -21,8 +17,3 @@
 
     });
 }
-
-
-/**
- * Created by Nazar on 02.02.2017.
- */

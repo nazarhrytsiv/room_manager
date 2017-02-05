@@ -19,41 +19,42 @@ def room(request):
     return render(request, 'room/room.html', context)
 
 
+
 def create(request):
     if request.method == "POST":
         form = RoomForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/room')
+            # return redirect('post_detail', pk=create.id)
     else:
         form = RoomForm()
     return render(request, 'room/create.html', {'form': form})
 
 
 def edit(request, pk):
+    print(request.method)
     post = Room.objects.get(pk=pk)
     if request.method == "POST":
         form = RoomForm(request.POST, instance=post)
         if form.is_valid():
             post.save()
-            return redirect('/room')
+            return redirect('/')
     else:
         form = RoomForm(instance=post)
     return render(request, 'room/edit.html', {'form': form})
 
-
 def delete(request):
-    data = json.loads(request.body)
+    data = json.loads(request.body.decode('utf-8'))
     if request.method == "DELETE":
         if Room.delete_by_id(data['id']):
             return HttpResponse(status=200)
     return HttpResponse(status=400)
-
+    # return render(request, 'room/delete.html', {'form': form})
 
 
 def show_room(request, room_id):
     room = get_object_or_404(Room, id=room_id)
-    return render(request, 'room/show_room.html', {'room': room})
+    return render(request, 'room/show_lesson.html', {'room': room})
 
 
 def home(request):

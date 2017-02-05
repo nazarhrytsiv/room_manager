@@ -11,3 +11,12 @@ class User(models.Model):
 
     def __str__(self):
         return self.username
+
+    @staticmethod
+    def delete_by_id(id):
+        try:
+            user = User.objects.get(pk=id)
+            user.delete()
+            return True
+        except:
+            return False

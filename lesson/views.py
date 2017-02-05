@@ -32,8 +32,9 @@ def edit(request, pk):
         form = LessonForm(instance=post)
     return render(request, 'room/edit.html', {'form': form})
 
+
 def delete(request):
-    data = json.loads(request.body)
+    data = json.loads(request.body.decode('utf-8'))
     if request.method == "DELETE":
         if Lesson.delete_by_id(data['id']):
             return HttpResponse(status=200)
