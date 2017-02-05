@@ -1,0 +1,26 @@
+{% for user in users %}
+    <tr id="users" xmlns="http://www.w3.org/1999/html">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+		<td>{{ user.name }}</td>
+		<td>{{ user.surname }}</td>
+		<td>{{ user.email }}</td>
+        <td>{{ user.password }}</td>
+    <td style="width: 150px">
+       <a href="{{user.id }}/edit/" ><button type="button" class="btn btn-sm btn-warning">Edit</button></a>
+       <button type="button"
+              class="btn btn-danger btn-sm js-delete-book"
+               onclick="del({{user.id }})">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+
+
+
+
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">No users</td>
+  </tr>
+{% endfor %}

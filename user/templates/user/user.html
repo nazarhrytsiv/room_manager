@@ -1,9 +1,36 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Users
+Lessons
 {% endblock %}
 
 {% block content %}
-<h1>IN PROCESS.......</h1>
+      <div class="page-header">
+        <h1>Lessons</h1>
+      <p>
+          <a href="/user/create/" > <button type="button" class="btn btn-sm btn-primary">+ New user</button></a>
+      </p>
+      </div>
+      <div class="row">
+
+        <div class="colon">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Password</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% include 'includes/user_list.html' %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+     <!-- /container -->
+
 {% endblock %}

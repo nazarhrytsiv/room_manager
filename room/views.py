@@ -54,7 +54,7 @@ def delete(request):
 
 def show_room(request, room_id):
     room = get_object_or_404(Room, id=room_id)
-    return render(request, 'room/show_lesson.html', {'room': room})
+    return render(request, 'room/show_room.html', {'room': room})
 
 
 def home(request):
