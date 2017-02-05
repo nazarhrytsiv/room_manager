@@ -12,10 +12,18 @@ class User(models.Model):
     def __str__(self):
         return self.username
 
+    @staticmethod
+    def delete_by_id(id):
+        try:
+            user = User.objects.get(pk=id)
+            user.delete()
+            return True
+        except:
+            return False
+
 class Group(models.Model):
     name = models.CharField(max_length=30)
     description = models.CharField(max_length=30)
-    image = models.ImageField()
     members = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -24,8 +32,8 @@ class Group(models.Model):
     @staticmethod
     def delete_by_id(id):
         try:
-            room = User.objects.get(pk=id)
-            room.delete()
+            group = Group.objects.get(pk=id)
+            group.delete()
             return True
         except:
             return False

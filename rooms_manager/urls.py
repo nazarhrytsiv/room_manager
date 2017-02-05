@@ -23,5 +23,4 @@ urlpatterns = [
     url(r'^lesson/', include('lesson.urls')),
     url(r'^user/' , include('user.urls')),
     url(r'^room/', include('room.urls')),
-    url(r'^group', include('user.urls'))
 ]

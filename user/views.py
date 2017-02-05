@@ -1,7 +1,7 @@
 import json
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from user.forms import UserForm
+from user.forms import UserForm, GroupForm
 from .models import User
 from .models import Group
 # Create your views here.
@@ -37,5 +37,44 @@ def delete(request):
     data = json.loads(request.body)
     if request.method == "DELETE":
         if User.delete_by_id(data['id']):
+            return HttpResponse(status=200)
+    return HttpResponse(status=400)
+
+
+#CREATED GROUOP
+
+
+def groups(request):
+    groups = Group.objects.all()
+    context = {
+        'groups': groups
+    }
+    return render(request , 'user/group.html', context)
+
+def create_group(request):
+    if request.method == 'POST':
+        form = GroupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = GroupForm()
+        return render(request, 'lesson/create.html', {'form': form})
+
+def edit_group(request, pk):
+    post = Group.objects.get(pk=pk)
+    if request.method == "POST":
+        form = GroupForm(request.POST, instance=post)
+        if form.is_valid():
+            post.save()
+            return redirect('/room')
+    else:
+        form = GroupForm(instance=post)
+    return render(request, 'room/edit.html', {'form': form})
+
+def delete_group(request):
+    data = json.loads(request.body)
+    if request.method == "DELETE":
+        if Group.delete_by_id(data['id']):
             return HttpResponse(status=200)
     return HttpResponse(status=400)
