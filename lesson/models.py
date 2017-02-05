@@ -9,3 +9,11 @@ class Lesson(models.Model):
     def __str__(self):
         return self.name
 
+    @staticmethod
+    def delete_by_id(id):
+        try:
+            lesson = Lesson.objects.get(pk=id)
+            lesson.delete()
+            return True
+        except:
+            return False
