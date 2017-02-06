@@ -16,7 +16,7 @@ def create(request):
         form = LessonForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/lesson')
     else:
         form = LessonForm()
         return render(request, 'lesson/create.html', {'form': form})
@@ -27,10 +27,10 @@ def edit(request, pk):
         form = LessonForm(request.POST, instance=post)
         if form.is_valid():
             post.save()
-            return redirect('/room')
+            return redirect('/lesson')
     else:
         form = LessonForm(instance=post)
-    return render(request, 'room/edit.html', {'form': form})
+    return render(request, 'lesson/edit.html', {'form': form})
 
 def delete(request):
     data = json.loads(request.body)

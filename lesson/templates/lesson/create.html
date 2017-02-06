@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="post-title">
     <h1>New post</h1>
+        </div>
+    <div class="spacer"></div>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
+        <div class="line"><h>Name:</h>{{ form.name }}</div>
+        <div class="line"><h>Place:</h>{{ form.place }}</div>
+       <div class="line"><h> Description:</h> {{ form.description }}</div>
+        <div class="line"><h>Timeout:</h>{{ form.timeout }}</div>
         <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+</form>
+
 {% endblock %}

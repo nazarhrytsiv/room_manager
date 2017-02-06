@@ -6,10 +6,11 @@
         </div>
     <div class="spacer"></div>
     <form method="POST" class="post-form">{% csrf_token %}
+        <div class="line"><h>NickName:</h>{{ form.username }}</div>
         <div class="line"><h>Name:</h>{{ form.name }}</div>
-        <div class="line"><h>Type:</h>{{ form.type }}</div>
-       <div class="line"><h> Description:</h> {{ form.desription }}</div>
-        <div class="line"><h>Size:</h>{{ form.size }}</div>
+       <div class="line"><h> Email:</h> {{ form.email }}</div>
+        <div class="line"><h>Password:</h>{{ form.password }}</div>
+       <div class="line"><h>Group:</h> {{ form.group }}</div>
         <button type="submit" class="save btn btn-default">Save</button>
 </form>
 

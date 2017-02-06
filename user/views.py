@@ -17,10 +17,10 @@ def create(request):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/user')
     else:
         form = UserForm()
-        return render(request, 'lesson/create.html', {'form': form})
+        return render(request, 'user/create.html', {'form': form})
 
 def edit(request, pk):
     post = User.objects.get(pk=pk)
@@ -28,10 +28,10 @@ def edit(request, pk):
         form = UserForm(request.POST, instance=post)
         if form.is_valid():
             post.save()
-            return redirect('/room')
+            return redirect('/user')
     else:
         form = UserForm(instance=post)
-    return render(request, 'room/edit.html', {'form': form})
+    return render(request, 'user/edit.html', {'form': form})
 
 def delete(request):
     data = json.loads(request.body)
@@ -56,10 +56,10 @@ def create_group(request):
         form = GroupForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/user/group')
     else:
         form = GroupForm()
-        return render(request, 'lesson/create.html', {'form': form})
+        return render(request, 'user/create_group.html', {'form': form})
 
 def edit_group(request, pk):
     post = Group.objects.get(pk=pk)
@@ -67,10 +67,10 @@ def edit_group(request, pk):
         form = GroupForm(request.POST, instance=post)
         if form.is_valid():
             post.save()
-            return redirect('/room')
+            return redirect('/user/group')
     else:
         form = GroupForm(instance=post)
-    return render(request, 'room/edit.html', {'form': form})
+    return render(request, 'user/edit_group.html', {'form': form})
 
 def delete_group(request):
     data = json.loads(request.body)
