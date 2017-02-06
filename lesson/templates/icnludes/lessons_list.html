@@ -1,6 +1,6 @@
 
 {% for lesson in lessons %}
-    <tr id="lessons" xmlns="http://www.w3.org/1999/html">
+    <tr id="hide" xmlns="http://www.w3.org/1999/html">
         <td>{{ lesson.id }}</td>
         <td>{{ lesson.name }}</td>
 		<td>{{ lesson.place }}</td>
@@ -22,6 +22,6 @@
   </tr>
 {% empty %}
   <tr>
-    <td colspan="8" class="text-center bg-warning">No Rooms</td>
+    <td colspan="8" class="text-center bg-warning">No Lessons</td>
   </tr>
 {% endfor %}

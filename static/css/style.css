@@ -1,3 +1,10 @@
-.colon{
+.description{
     width: 100%;
+    display: inline-flex;
+}
+
+.name{
+    width: 100%;
+    height: 100%;
+    margin-left: 5px;
 }

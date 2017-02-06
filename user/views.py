@@ -1,6 +1,6 @@
 import json
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from user.forms import UserForm, GroupForm
 from .models import User
 from .models import Group
@@ -78,3 +78,8 @@ def delete_group(request):
         if Group.delete_by_id(data['id']):
             return HttpResponse(status=200)
     return HttpResponse(status=400)
+
+
+def show_group(request, pk):
+    group = get_object_or_404(Group, pk=pk)
+    return render(request, 'user/show_group.html', {'group': group})

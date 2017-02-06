@@ -1,12 +1,13 @@
 {% for group in groups %}
 
-    <tr id="groups" xmlns="http://www.w3.org/1999/html">
+    <tr id="hide" xmlns="http://www.w3.org/1999/html">
 
         <td>{{ group.id }}</td>
         <td>{{ group.name }}</td>
-		<td>{{ group.desription }}</td>
+		<td>{{ group.description }}</td>
 
-    <td style="width: 150px">
+    <td style="width: 178px">
+        <a href="show_group/{{group.id }}"><button type="button" class="btn btn-sm btn-info">Info</button></a>
         <a href="{{group.id }}/edit/" ><button type="button" class="btn btn-sm btn-warning">Edit</button></a>
       <button type="button"
               class="btn btn-danger btn-sm js-delete-book"
@@ -22,6 +23,6 @@
 
 {% empty %}
   <tr>
-    <td colspan="8" class="text-center bg-warning">No Rooms</td>
+    <td colspan="8" class="text-center bg-warning">No Groups</td>
   </tr>
 {% endfor %}

@@ -1,7 +1,5 @@
  function del(id){
-    $( this ).hide();
-    $( "#lessons" ).hide( "slow" );
-    $( "#rooms" ).hide( "slow" );
+    $( "#hide" ).hide( "#hide" );
 
    var _data = {
         'id': id,
