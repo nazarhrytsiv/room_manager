@@ -82,8 +82,9 @@ def delete_group(request):
 
 def show_group(request, pk):
     group = get_object_or_404(Group, pk=pk)
+    users = User.objects.filter(group = group)
     context = {
-        'group': group
-
+        'group': group,
+        'users': users
     }
     return render(request, 'user/show_group.html', context)

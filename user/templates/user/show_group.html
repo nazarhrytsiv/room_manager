@@ -25,12 +25,12 @@ Group
   <!-- Default panel contents -->
   <div class="panel-heading">MEMBERS:</div>
   <!-- List group -->
+        {% for user in users %}
   <ul class="list-group">
-    <li class="list-group-item"></li>
-{% for user in users %}
+    <li class="list-group-item">
     {{ user.username }}
-
-    {% endfor %}
+</li>
   </ul>
+    {% endfor %}
 </div>
 {% endblock %}
