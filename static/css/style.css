@@ -17,3 +17,46 @@
     padding: 15px;
     height: 150px;
 }
+
+.post-form{
+    display: block;
+}
+
+#id_name , #id_type, #id_desription{
+    font-family: "Cuprum", serif;
+    font-size: 14px;
+    color: #000;
+}
+}
+
+.full-story {
+        font-size: 16px;
+}
+
+.post-title {
+    font-size: 19px;
+    color: #000;
+    text-decoration: none;
+    line-height: 25px;
+    padding-left: 0px;
+}
+
+.spacer {
+    border-bottom: 1px dashed #384856;
+    padding: 2px 0px 5px;
+}
+
+
+.line {
+    margin: 5px;
+    color: #000;
+    padding: 5px 15px;
+    border-bottom: 1px solid #384856;
+}
+
+
+.line h {
+    width: 100px;
+    float: left;
+    padding: 3px 0;
+}

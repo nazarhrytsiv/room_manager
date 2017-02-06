@@ -8,7 +8,7 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'name', 'email', 'password' , 'group')
+        fields = ('username', 'name', 'email', 'password' , 'group' , 'teacher')
 
 
 class GroupForm(forms.ModelForm):

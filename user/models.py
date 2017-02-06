@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Group(models.Model):
     name = models.CharField(max_length=30)
-    description = models.CharField(max_length=620)
+    description = models.TextField(max_length=620)
 
 
     def __str__(self):
@@ -20,6 +20,12 @@ class Group(models.Model):
 
 
 
+class Teacher(models.Model):
+    username = models.CharField(max_length=20)
+    def __str__(self):
+        return self.username
+
+
 
 class User(models.Model):
     username = models.CharField(max_length=30)
@@ -27,6 +33,7 @@ class User(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=30)
     group = models.ForeignKey(Group, null=True, on_delete=models.SET_NULL, default=None)
+    teacher = models.OneToOneField(Teacher, null=True, on_delete=models.SET_NULL, default=None)
     def __str__(self):
         return self.username
 
