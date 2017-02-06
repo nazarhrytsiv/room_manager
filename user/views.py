@@ -75,6 +75,7 @@ def edit_group(request, pk):
 def delete_group(request):
     data = json.loads(request.body)
     if request.method == "DELETE":
+        print 233
         if Group.delete_by_id(data['id']):
             return HttpResponse(status=200)
     return HttpResponse(status=400)
