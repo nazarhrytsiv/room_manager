@@ -19,21 +19,12 @@ class Group(models.Model):
             return False
 
 
-
-class Teacher(models.Model):
-    username = models.CharField(max_length=20)
-    def __str__(self):
-        return self.username
-
-
-
 class User(models.Model):
     username = models.CharField(max_length=30)
     name = models.CharField(max_length=30)
     email = models.EmailField()
     password = models.CharField(max_length=30)
     group = models.ForeignKey(Group, null=True, on_delete=models.SET_NULL, default=None)
-    teacher = models.OneToOneField(Teacher, null=True, on_delete=models.SET_NULL, default=None)
     def __str__(self):
         return self.username
 
@@ -45,3 +36,10 @@ class User(models.Model):
             return True
         except:
             return False
+
+
+
+class Teacher(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.SET_NULL, default=None)
+    def __str__(self):
+        return self.user.name
