@@ -8,3 +8,12 @@
     height: 100%;
     margin-left: 5px;
 }
+.responsive-img{
+    max-height: 150px;
+    max-width: 150px;
+}
+
+.panel-body{
+    padding: 15px;
+    height: 150px;
+}

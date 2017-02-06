@@ -6,23 +6,31 @@ Group
 
 {% block content %}
 <div class="page-header">
-        <h1>{{ group.name }}</h1>
-      </div>
+        <h1>Name : {{ group.name }}</h1>
+
+</div>
     <div class="description">
     <img src="{% static 'personal/img/profile.jpg' %}" class="responsive-img"  alt="face">
+
         <div class="name">
     <div class="panel panel-default">
   <div class="panel-body">
-    Basic panel example
+    Description:{{ group.description }}
   </div>
     </div>
 </div>
-    <div class="name">
+
+    </div>
     <div class="panel panel-default">
-  <div class="panel-body">
-    Basic panel example
-  </div>
-    </div>
+  <!-- Default panel contents -->
+  <div class="panel-heading">MEMBERS:</div>
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item"></li>
+{% for user in users %}
+    {{ user.username }}
+
+    {% endfor %}
+  </ul>
 </div>
-    </div>
 {% endblock %}
