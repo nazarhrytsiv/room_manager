@@ -1,28 +1,30 @@
 {% for group in groups %}
 
-    <tr id="hide" xmlns="http://www.w3.org/1999/html">
+<tr id="group_{{group.id}}" xmlns="http://www.w3.org/1999/html">
 
-        <td>{{ group.id }}</td>
-        <td>{{ group.name }}</td>
-		<td>{{ group.captain }}</td>
+    <td>{{ group.id }}</td>
+    <td>{{ group.name }}</td>
+    <td>{{ group.captain }}</td>
 
     <td style="width: 178px">
-        <a href="show_group/{{group.id }}"><button type="button" class="btn btn-sm btn-info">Info</button></a>
-        <a href="{{group.id }}/edit/" ><button type="button" class="btn btn-sm btn-warning">Edit</button></a>
-      <button type="button"
-              class="btn btn-danger btn-sm js-delete-book"
-              onclick="delete_group({{group.id }})">
-        <span class="glyphicon glyphicon-trash"></span> Delete
-      </button>
-
-
+        <a href="show_group/{{group.id }}">
+            <button type="button" class="btn btn-sm btn-info">Info</button>
+        </a>
+        <a href="{{group.id }}/edit/">
+            <button type="button" class="btn btn-sm btn-warning">Edit</button>
+        </a>
+        <button type="button"
+                class="btn btn-danger btn-sm js-delete-book"
+                onclick="delete_group({{group.id }})">
+            <span class="glyphicon glyphicon-trash"></span> Delete
+        </button>
 
 
     </td>
-  </tr>
+</tr>
 
 {% empty %}
-  <tr>
+<tr>
     <td colspan="8" class="text-center bg-warning">No Groups</td>
-  </tr>
+</tr>
 {% endfor %}

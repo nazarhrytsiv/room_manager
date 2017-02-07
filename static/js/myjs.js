@@ -21,20 +21,22 @@
 }
 
  function delete_group(id){
-    $( "#hide" ).hide( "#hide" );
+
    var _data = {
         'id': id,
         'name': name
    };
     $.ajax({
-          type: "DELETE",
-          url: "delete_group/",
-          dataType: 'json',
-          data: JSON.stringify(_data),
-          success:
-          function(response){
-            console.log(response);
-          }
+            type: "DELETE",
+            url: "delete_group/",
+            data: JSON.stringify(_data),
+            success: function(response){
+                $("#group_"+ id).remove();
+                console.log(response);
+            },
+            error: function(err){
+                console.log(err);
+            }
     });
 }
 
