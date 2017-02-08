@@ -2,12 +2,12 @@ from django.shortcuts import render
 import json
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from user.forms import GroupForm
+from group.forms import GroupForm
 from .models import Group
 # Create your views here.
 
 def groups(request):
-    groups = Group.get()
+    groups = Group.get_all()
     context = {
         'groups': groups
     }
@@ -19,7 +19,7 @@ def create(request):
         form = GroupForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/user/group')
+            return redirect('/group')
     else:
         form = GroupForm()
 
@@ -28,12 +28,12 @@ def create(request):
 
 
 def edit(request, pk):
-    post = Group.objects.get(pk=pk)
+    post = Group.get(pk)
     if request.method == "POST":
         form = GroupForm(request.POST, instance=post)
         if form.is_valid():
             post.save()
-            return redirect('/user/group')
+            return redirect('/group')
     else:
         form = GroupForm(instance=post)
     return render(request, 'group/edit.html', {'form': form})

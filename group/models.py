@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Group(models.Model):
     name = models.CharField(max_length=30)
     img = models.CharField(max_length=30, default='')
@@ -19,6 +20,11 @@ class Group(models.Model):
             return False
 
     @staticmethod
-    def get():
+    def get_all():
         groups = Group.objects.all()
         return groups
+
+    @staticmethod
+    def get(pk):
+        group = Group.objects.get(pk=pk)
+        return group

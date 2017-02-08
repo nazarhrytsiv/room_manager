@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'lesson',
     'room',
     'user',
+    'group',
 ]
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

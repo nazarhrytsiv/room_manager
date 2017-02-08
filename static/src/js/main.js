@@ -28,7 +28,7 @@
    };
     $.ajax({
             type: "DELETE",
-            url: "delete_group/",
+            url: "delete/",
             data: JSON.stringify(_data),
             success: function(response){
                 $("#group_"+ id).remove();

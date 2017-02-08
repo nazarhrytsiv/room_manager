@@ -16,15 +16,10 @@ class User(models.Model):
     @staticmethod
     def delete_by_id(id):
         try:
-            user = User.objects.get(pk=id)
+            user = User.objects.get(id=id)
             user.delete()
             return True
         except:
             return False
 
 
-class Teacher(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.SET_NULL, default=None)
-
-    def __str__(self):
-        return self.user.name
