@@ -44,7 +44,7 @@ $(document).ready(function(){
     };
     $.ajax({
         type: "POST",
-        url: 'Ajax.ashx',
+        url: '/',
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         data: JSON.stringify(_data),

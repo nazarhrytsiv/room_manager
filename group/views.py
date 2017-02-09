@@ -26,10 +26,19 @@ def create(request):
 
 def edit(request, pk):
     post = Group.get(pk)
-    context = {
-            'post': post
-        }
-    return render(request, 'group/edit.html', context)
+    if request.method == "POST":
+        data = {}
+        result = request.body.split('&')
+        for i in result:
+            data.update(dict([i.split("="), ]))
+        group = Group(name=data['name'], description=data['description'])
+        group.save()
+        return redirect('/group')
+    else:
+        context = {
+                'post': post
+            }
+        return render(request, 'group/edit.html', context)
 
 
 def delete(request):
