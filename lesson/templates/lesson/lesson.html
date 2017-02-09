@@ -26,7 +26,32 @@ Lessons
               </tr>
             </thead>
             <tbody>
-              {% include 'icnludes/lessons_list.html' %}
+              {% for lesson in lessons %}
+    <tr id="hide_{{ lesson.id }}" xmlns="http://www.w3.org/1999/html">
+        <td>{{ lesson.id }}</td>
+        <td>{{ lesson.name }}</td>
+		<td>{{ lesson.place }}</td>
+		<td>{{ lesson.description }}</td>
+		<td>{{ lesson.time }}</td>
+        <td>{{ lesson.timeout }}</td>
+    <td style="width: 150px">
+       <a href="{{lesson.id }}/edit/" ><button type="button" class="btn btn-sm btn-warning">Edit</button></a>
+       <button type="button"
+              class="btn btn-danger btn-sm js-delete-book"
+               onclick="delete_object({{lesson.id }})">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+
+
+
+
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">No Lessons</td>
+  </tr>
+{% endfor %}
             </tbody>
           </table>
         </div>

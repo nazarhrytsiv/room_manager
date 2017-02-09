@@ -17,7 +17,7 @@ function del(id) {
     });
 }
 
-function delete_group(id) {
+function delete_object(id) {
 
     var _data = {
         'id': id
@@ -28,7 +28,7 @@ function delete_group(id) {
         url: "delete/",
         data: JSON.stringify(_data),
         success: function (response) {
-            $("#group_" + id).remove();
+            $("#hide_" + id).remove();
             console.log(response);
         },
         error: function (err) {

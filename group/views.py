@@ -1,7 +1,6 @@
 import json
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from group.forms import GroupForm
+from django.shortcuts import render, redirect
 from .models import Group
 # Create your views here.
 

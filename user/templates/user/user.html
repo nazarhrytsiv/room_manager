@@ -29,7 +29,7 @@ User
             <tbody>
               {% for user in users %}
 
-    <tr id="hide" xmlns="http://www.w3.org/1999/html">
+    <tr id="hide_{{ user.id }}" xmlns="http://www.w3.org/1999/html">
 
         <td>{{ user.id }}</td>
         <td>{{ user.username }}</td>
@@ -40,7 +40,7 @@ User
         <a href="{{user.id }}/edit/" ><button type="button" class="btn btn-sm btn-warning">Edit</button></a>
       <button type="button"
               class="btn btn-danger btn-sm js-delete-book"
-              onclick="del({{user.id }})">
+              onclick="delete_object({{user.id }})">
         <span class="glyphicon glyphicon-trash"></span> Delete
       </button>
 

@@ -27,7 +27,7 @@ Group
             <tbody>
               {% for group in groups %}
 
-<tr id="group_{{group.id}}" xmlns="http://www.w3.org/1999/html">
+<tr id="hide_{{group.id}}" xmlns="http://www.w3.org/1999/html">
 
     <td>{{ group.id }}</td>
     <td>{{ group.name }}</td>
@@ -42,7 +42,7 @@ Group
         </a>
         <button type="button"
                 class="btn btn-danger btn-sm js-delete-book"
-                onclick="delete_group({{group.id }})">
+                onclick="delete_object({{group.id }})">
             <span class="glyphicon glyphicon-trash"></span> Delete
         </button>
 
