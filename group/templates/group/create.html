@@ -7,23 +7,19 @@
 <div class="spacer"></div>
 <form method="POST" class="post-form">
     <div class="line">
+
         <h>Name:</h>
         <label>
             <input id="id_name" maxlength="30" name="name" type="text">
         </label>
     </div>
-    <div class="line">
-        <h>Captain:</h>
-        <label>
-            <input id="id_captain" maxlength="30" name="name" type="text">
-        </label>
 
-    </div>
     <div class="line">
         <h> Description:</h>
         <label><textarea cols="40" id="id_description" maxlength="620" name="description" rows="10"></textarea></label>
     </div>
     <button type="submit" class="save btn btn-default">Save</button>
+
 </form>
 
 {% endblock %}

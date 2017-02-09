@@ -40,7 +40,6 @@ $(document).ready(function(){
     $('.btn-default').on('click', function () {
         var _data = {
         'name': $('#id_name').val(),
-        'captain': $("#id_captain").val(),
         'description': $('#id_description').val()
     };
     $.ajax({

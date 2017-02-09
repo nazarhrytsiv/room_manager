@@ -22,10 +22,11 @@
     display: block;
 }
 
-#id_name , #id_type, #id_desription{
+#id_name , #id_type, #id_description{
     font-family: "Cuprum", serif;
     font-size: 14px;
     color: #000;
+    font-weight: normal;
 }
 
 

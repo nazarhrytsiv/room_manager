@@ -1,4 +1,3 @@
-from django.shortcuts import render
 import json
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -15,39 +14,22 @@ def groups(request):
 
 def create(request):
     if request.method == "POST":
-        print request.body
         data = {}
         result = request.body.split('&')
         for i in result:
             data.update(dict([i.split("="), ]))
         group = Group(name=data['name'],description=data['description'])
-        print group
         group.save()
-        return HttpResponse(status=200)
+        return redirect('/group')
     else:
         return render(request, 'group/create.html')
-# def create(request):
-#     if request.method == 'POST':
-#         print 1
-#         form = GroupForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/group')
-#     else:
-#         print 0
-#         form = GroupForm()
-#         return render(request, 'group/create.html', {'form': form})
 
 def edit(request, pk):
     post = Group.get(pk)
-    if request.method == "POST":
-        form = GroupForm(request.POST, instance=post)
-        if form.is_valid():
-            post.save()
-            return redirect('/group')
-    else:
-        form = GroupForm(instance=post)
-    return render(request, 'group/edit.html', {'form': form})
+    context = {
+            'post': post
+        }
+    return render(request, 'group/edit.html', context)
 
 
 def delete(request):
@@ -59,7 +41,7 @@ def delete(request):
 
 
 def show(request, pk):
-    group = get_object_or_404(Group, pk=pk)
+    group = Group.get(pk=pk)
     # users = User.objects.filter(group=group)
     context = {
         'group': group,
