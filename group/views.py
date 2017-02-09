@@ -13,19 +13,30 @@ def groups(request):
     }
     return render(request, 'group/group.html', context)
 
-
 def create(request):
-    if request.method == 'POST':
-        form = GroupForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/group')
+    if request.method == "POST":
+        print request.body
+        data = {}
+        result = request.body.split('&')
+        for i in result:
+            data.update(dict([i.split("="), ]))
+        group = Group(name=data['name'],description=data['description'])
+        print group
+        group.save()
+        return HttpResponse(status=200)
     else:
-        form = GroupForm()
-
-
-        return render(request, 'group/create.html', {'form': form})
-
+        return render(request, 'group/create.html')
+# def create(request):
+#     if request.method == 'POST':
+#         print 1
+#         form = GroupForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/group')
+#     else:
+#         print 0
+#         form = GroupForm()
+#         return render(request, 'group/create.html', {'form': form})
 
 def edit(request, pk):
     post = Group.get(pk)

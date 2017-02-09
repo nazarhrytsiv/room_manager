@@ -20,8 +20,8 @@ function del(id) {
 function delete_group(id) {
 
     var _data = {
-        'id': id,
-        'name': name
+        'id': id
+
     };
     $.ajax({
         type: "DELETE",
@@ -36,27 +36,29 @@ function delete_group(id) {
         }
     });
 }
-
-$('.btn-default').on('click', function () {
-    var _data = {
+$(document).ready(function(){
+    $('.btn-default').on('click', function () {
+        var _data = {
         'name': $('#id_name').val(),
-        'captain': $('#id_captain').val(),
+        'captain': $("#id_captain").val(),
         'description': $('#id_description').val()
-
     };
     $.ajax({
         type: "POST",
-        url: "create/",
+        url: 'Ajax.ashx',
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
         data: JSON.stringify(_data),
-        success: function (response) {
-            console.log(response);
+        async: false,
+        success: function (_data) {
+            console.log(_data);
         },
-        error: function (err) {
-            console.log(err);
+        error: function (_data) {
+            console.log(_data);
         }
     });
 });
-
+});
 /**
  * Created by Nazar on 02.02.2017.
  */
