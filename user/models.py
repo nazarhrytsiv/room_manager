@@ -22,4 +22,12 @@ class User(models.Model):
         except:
             return False
 
+    @staticmethod
+    def get_all():
+        users = User.objects.all()
+        return users
 
+    @staticmethod
+    def get(pk):
+        user = User.objects.get(pk=pk)
+        return user

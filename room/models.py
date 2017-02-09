@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class Room(models.Model):
@@ -20,3 +21,12 @@ class Room(models.Model):
         except:
             return False
 
+    @staticmethod
+    def get_all():
+        rooms = Room.objects.all()
+        return rooms
+
+    @staticmethod
+    def get(pk):
+        room = Room.objects.get(pk=pk)
+        return room

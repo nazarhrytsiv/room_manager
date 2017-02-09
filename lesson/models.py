@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Lesson(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
@@ -17,3 +18,13 @@ class Lesson(models.Model):
             return True
         except:
             return False
+
+    @staticmethod
+    def get_all():
+        lessons = Lesson.objects.all()
+        return lessons
+
+    @staticmethod
+    def get(pk):
+        lesson = Lesson.objects.get(pk=pk)
+        return lesson
