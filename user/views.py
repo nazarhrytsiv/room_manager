@@ -1,9 +1,7 @@
 import json
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from user.forms import UserForm
+from django.shortcuts import render, redirect
 from .models import User
-
 
 
 # Create your views here.
@@ -16,29 +14,35 @@ def users(request):
 
 
 def create(request):
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/user')
-        else:
-            return HttpResponse(status=400)
+    if request.method == "POST":
+        data = {}
+        result = request.body.split('&')
+        for i in result:
+            data.update(dict([i.split("="), ]))
+        user = User(username=data['username'], name=data['name'], email=data['email'], password=data['password'],)
+        user.save()
+        return redirect('/user')
     else:
-        form = UserForm()
-        return render(request, 'user/create.html', {'form': form})
+        return render(request, 'user/create.html')
+
 
 
 def edit(request, pk):
-    post = User.objects.get(pk=pk)
+    post = User.get(pk=pk)
     if request.method == "POST":
-        form = UserForm(request.POST, instance=post)
-        if form.is_valid():
-            post.save()
-            return redirect('/user')
+        data = {}
+        result = request.body.split('&')
+        for i in result:
+            data.update(dict([i.split("="), ]))
+        user = User(username=data['username'], name=data['name'], email=data['email'], password=data['password'], )
+        user.id = pk
+        user.save()
+        return redirect('/user')
     else:
-        form = UserForm(instance=post)
-    return render(request, 'user/edit.html', {'form': form})
-
+        context = {
+                'post': post
+            }
+        return render(request, 'user/edit.html', context)
 
 def delete(request):
     data = json.loads(request.body)
@@ -46,4 +50,3 @@ def delete(request):
         if User.delete_by_id(data['id']):
             return HttpResponse(status=200)
     return HttpResponse(status=400)
-

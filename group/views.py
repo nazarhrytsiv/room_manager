@@ -24,13 +24,14 @@ def create(request):
         return render(request, 'group/create.html')
 
 def edit(request, pk):
-    post = Group.get(pk)
+    post = Group.get(pk=pk)
     if request.method == "POST":
         data = {}
         result = request.body.split('&')
         for i in result:
             data.update(dict([i.split("="), ]))
         group = Group(name=data['name'], description=data['description'])
+        group.id = pk
         group.save()
         return redirect('/group')
     else:

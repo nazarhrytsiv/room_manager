@@ -2,16 +2,41 @@
 
 {% block content %}
     <div class="post-title">
-    <h1>New post</h1>
-        </div>
+        <h1>New post</h1>
+    </div>
     <div class="spacer"></div>
-    <form method="POST" class="post-form">{% csrf_token %}
-        <div class="line"><h>NickName:</h>{{ form.username }}</div>
-        <div class="line"><h>Name:</h>{{ form.name }}</div>
-       <div class="line"><h> Email:</h> {{ form.email }}</div>
-        <div class="line"><h>Password:</h>{{ form.password }}</div>
-       <div class="line"><h>Group:</h> {{ form.group }}</div>
-        <button type="submit" class="save btn btn-default">Save</button>
-</form>
+    <form method="POST" class="post-form">
+        <div class="line">
+
+            <h>Username:</h>
+            <label>
+                <input id="id_username" maxlength="30" name="username" type="text">
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Name:</h>
+            <label>
+                <input id="id_name_user" maxlength="30" name="name" type="text">
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Email:</h>
+            <label>
+                <input id="id_email" maxlength="30" name="email" type="text">
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Password:</h>
+            <label>
+                <input id="id_password" maxlength="30" name="password" type="text">
+            </label>
+        </div>
+
+        <button type="submit" id="save_user" class="save btn btn-default">Save</button>
+
+    </form>
 
 {% endblock %}
