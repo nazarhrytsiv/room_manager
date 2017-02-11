@@ -1,18 +1,14 @@
 from django.shortcuts import render, get_object_or_404
-from django.shortcuts import render_to_response
-
 from .models import Room
-from .forms import RoomForm
 from django.shortcuts import redirect
 from django.http import HttpResponse
 import json
 
 
-
 # Create your views here.
 
 def room(request):
-    rooms = Room.objects.all()
+    rooms = Room.get_all()
     context = {
         'rooms': rooms
     }
@@ -21,25 +17,33 @@ def room(request):
 
 def create(request):
     if request.method == "POST":
-        form = RoomForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/room')
+        data = {}
+        result = request.body.split('&')
+        for i in result:
+            data.update(dict([i.split("="), ]))
+        room = Room(name=data['name'], type=data['type'], description=data['description'], size=data['size'], )
+        room.save()
+        return redirect('/room')
     else:
-        form = RoomForm()
-    return render(request, 'room/create.html', {'form': form})
+        return render(request, 'room/create.html')
 
 
 def edit(request, pk):
-    post = Room.objects.get(pk=pk)
+    post = Room.get(pk=pk)
     if request.method == "POST":
-        form = RoomForm(request.POST, instance=post)
-        if form.is_valid():
-            post.save()
-            return redirect('/room')
+        data = {}
+        result = request.body.split('&')
+        for i in result:
+            data.update(dict([i.split("="), ]))
+        room = Room(name=data['name'], type=data['type'], description=data['description'], size=data['size'], )
+        room.id = pk
+        room.save()
+        return redirect('/room')
     else:
-        form = RoomForm(instance=post)
-    return render(request, 'room/edit.html', {'form': form})
+        context = {
+            'post': post
+        }
+        return render(request, 'room/edit.html', context)
 
 
 def delete(request):
@@ -48,7 +52,6 @@ def delete(request):
         if Room.delete_by_id(data['id']):
             return HttpResponse(status=200)
     return HttpResponse(status=400)
-
 
 
 def show_room(request, room_id):

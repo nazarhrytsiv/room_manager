@@ -6,7 +6,7 @@ from django.db import models
 class Room(models.Model):
     name = models.CharField(max_length=50)
     type = models.CharField(max_length=10)
-    desription = models.TextField()
+    description = models.TextField()
     size = models.IntegerField()
 
     def __str__(self):
