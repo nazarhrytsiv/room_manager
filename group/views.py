@@ -28,9 +28,9 @@ def edit(request, pk):
     post = Group.get(pk=pk)
     if request.method == "PUT":
         data = json.loads(request.body)
-        group = Group(**data)
-        group.save()
-        return HttpResponse(status=201)
+        post = Group(**data)
+        post.save()
+        return JsonResponse({'foo': 'bar'})
     else:
         context = {
             'post': post

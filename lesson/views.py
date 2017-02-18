@@ -19,9 +19,7 @@ def create(request):
         data = json.loads(request.body)
         lesson = Lesson(**data)
         lesson.save()
-        respons = {"a": 1, "b": 2}
-        print respons
-        return JsonResponse(data=respons, status=201)
+        return HttpResponse(status=201)
     else:
         return render(request, 'lesson/create.html')
 
