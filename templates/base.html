@@ -12,9 +12,12 @@
     <link href="{% static 'css/theme.css' %}" rel="stylesheet">
 
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
-
+    <script src="{% static 'src/js/group.js' %}"></script>
+    <script src="{% static 'src/js/lesson.js' %}"></script>
+    <script src="{% static 'src/js/room.js' %}"></script>
+    <script src="{% static 'src/js/user.js' %}"></script>
     <script src="{% static 'src/js/main.js' %}"></script>
-    <script src="{% static 'js/jquery-3.1.1.min.js'%}"></script>
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
 
 </head>
 
@@ -39,27 +42,30 @@
 
 <div class="container theme-showcase" role="main">
     {% block content %}
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <h1>Welcome to our website</h1>
-        <p> where you'll find a wealth of information in the form of newsletter articles, calculators, and research
-            reports.
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <h1>Welcome to our website</h1>
+            <p> where you'll find a wealth of information in the form of newsletter articles, calculators, and research
+                reports.
 
-            We hope your visit will help you understand the opportunities and potential rewards that are available when
-            you take a proactive approach to your personal financial situation. [Company] created this website to help
-            you gain a better understanding of the financial concepts behind insurance, investing, retirement, estate
-            planning, and wealth preservation. Most importantly, we hope you see the value of working with skilled
-            professionals to pursue your financial goals. We're here to help educate you about the basic concepts of
-            financial planning, to help you learn more about who we are, and to give you fast, easy access to market
-            performance and data. We hope you take advantage of this resource and visit us often. Be sure to add our
-            site to your list of "favorites" in your Internet browser. We frequently update our information, and we
-            wouldn't want you to miss any developments in the area of personal finance.
-        </p></div>
-</div>
+                We hope your visit will help you understand the opportunities and potential rewards that are available
+                when
+                you take a proactive approach to your personal financial situation. [Company] created this website to
+                help
+                you gain a better understanding of the financial concepts behind insurance, investing, retirement,
+                estate
+                planning, and wealth preservation. Most importantly, we hope you see the value of working with skilled
+                professionals to pursue your financial goals. We're here to help educate you about the basic concepts of
+                financial planning, to help you learn more about who we are, and to give you fast, easy access to market
+                performance and data. We hope you take advantage of this resource and visit us often. Be sure to add our
+                site to your list of "favorites" in your Internet browser. We frequently update our information, and we
+                wouldn't want you to miss any developments in the area of personal finance.
+            </p></div>
+        </div>
 
 
-<!-- /container -->
-{% endblock %}
+        <!-- /container -->
+    {% endblock %}
 
 
 </body>

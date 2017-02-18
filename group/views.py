@@ -1,7 +1,9 @@
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from .models import Group
+
+
 # Create your views here.
 
 def groups(request):
@@ -11,17 +13,21 @@ def groups(request):
     }
     return render(request, 'group/group.html', context)
 
+
 def create(request):
+    print  "post"
     if request.method == "POST":
-        data = {}
-        result = request.body.split('&')
-        for i in result:
-            data.update(dict([i.split("="), ]))
-        group = Group(name=data['name'],description=data['description'])
+        print 11111111
+        data = json.loads(request.body)
+        group = Group(**data)
         group.save()
-        return redirect('/group')
+        respons = {"a": 1, "b": 2}
+        print respons
+        return JsonResponse(data=respons, status=201)
+        # return redirect('/group')
     else:
         return render(request, 'group/create.html')
+
 
 def edit(request, pk):
     post = Group.get(pk=pk)
@@ -36,8 +42,8 @@ def edit(request, pk):
         return redirect('/group')
     else:
         context = {
-                'post': post
-            }
+            'post': post
+        }
         return render(request, 'group/edit.html', context)
 
 
