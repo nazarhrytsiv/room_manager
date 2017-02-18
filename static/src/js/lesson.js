@@ -12,11 +12,10 @@ $(document).ready(function () {
         };
         $.ajax({
             type: "POST",
-            url: '/',
+            url: '/lesson/create/',
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             data: JSON.stringify(_data),
-            async: false,
             success: function (_data) {
                 console.log(_data);
             },

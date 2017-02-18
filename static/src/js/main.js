@@ -2,8 +2,8 @@ function delete_object(id) {
 
     var _data = {
         'id': id
-
     };
+
     $.ajax({
         type: "DELETE",
         url: "delete/",

@@ -12,9 +12,8 @@ $(document).ready(function () {
         };
         $.ajax({
             type: "POST",
-            url: '/',
+            url: '/room/create/',
             contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
             data: JSON.stringify(_data),
             async: false,
             success: function (_data) {
@@ -26,3 +25,4 @@ $(document).ready(function () {
         });
     });
 });
+

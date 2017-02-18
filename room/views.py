@@ -17,13 +17,10 @@ def room(request):
 
 def create(request):
     if request.method == "POST":
-        data = {}
-        result = request.body.split('&')
-        for i in result:
-            data.update(dict([i.split("="), ]))
-        room = Room(name=data['name'], type=data['type'], description=data['description'], size=data['size'], )
+        data = json.loads(request.body)
+        room = Room(**data)
         room.save()
-        return redirect('/room')
+        return HttpResponse(status=201)
     else:
         return render(request, 'room/create.html')
 

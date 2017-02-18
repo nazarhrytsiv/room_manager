@@ -15,16 +15,12 @@ def users(request):
 
 def create(request):
     if request.method == "POST":
-        data = {}
-        result = request.body.split('&')
-        for i in result:
-            data.update(dict([i.split("="), ]))
-        user = User(username=data['username'], name=data['name'], email=data['email'], password=data['password'],)
+        data = json.loads(request.body)
+        user = User(**data)
         user.save()
-        return redirect('/user')
+        return HttpResponse(status=201)
     else:
         return render(request, 'user/create.html')
-
 
 
 def edit(request, pk):

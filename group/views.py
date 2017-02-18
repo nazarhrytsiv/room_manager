@@ -1,6 +1,6 @@
 import json
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .models import Group
 
 
@@ -15,16 +15,11 @@ def groups(request):
 
 
 def create(request):
-    print  "post"
     if request.method == "POST":
-        print 11111111
         data = json.loads(request.body)
         group = Group(**data)
         group.save()
-        respons = {"a": 1, "b": 2}
-        print respons
-        return JsonResponse(data=respons, status=201)
-        # return redirect('/group')
+        return HttpResponse(status=201)
     else:
         return render(request, 'group/create.html')
 
@@ -32,14 +27,10 @@ def create(request):
 def edit(request, pk):
     post = Group.get(pk=pk)
     if request.method == "POST":
-        data = {}
-        result = request.body.split('&')
-        for i in result:
-            data.update(dict([i.split("="), ]))
-        group = Group(name=data['name'], description=data['description'])
-        group.id = pk
+        data = json.loads(request.body)
+        group = Group(**data)
         group.save()
-        return redirect('/group')
+        return HttpResponse(status=201)
     else:
         context = {
             'post': post
