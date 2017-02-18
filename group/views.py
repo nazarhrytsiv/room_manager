@@ -26,7 +26,7 @@ def create(request):
 
 def edit(request, pk):
     post = Group.get(pk=pk)
-    if request.method == "POST":
+    if request.method == "PUT":
         data = json.loads(request.body)
         group = Group(**data)
         group.save()
