@@ -69,3 +69,25 @@ function update_group(id) {
             }
         });
 }
+
+function add_member_to_group(user_id,group_id) {
+
+    var _data = {
+            'id': user_id
+        };
+
+    $.ajax({
+            type: "POST",
+            url: '/group/'+ group_id +'/add_member/',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(_data),
+            success: function (respons) {
+                console.log(respons);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+}
+
+

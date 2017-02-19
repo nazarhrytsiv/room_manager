@@ -2,6 +2,7 @@ import json
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from .models import Group
+from user.models import User
 
 
 # Create your views here.
@@ -48,9 +49,26 @@ def delete(request):
 
 def show(request, pk):
     group = Group.get(pk=pk)
-    # users = User.objects.filter(group=group)
+    users = User.objects.filter(group=group)
     context = {
         'group': group,
-        # 'users': users
+        'users': users
     }
     return render(request, 'group/show_group.html', context)
+
+def add_member(request, pk):
+    users = User.objects.filter(group=None)
+    group = Group.get(pk=pk)
+    if request.method == "POST":
+        print 1111
+        data = json.loads(request.body)
+        user_add_to_group = User.objects.get(id=data['id'])
+        user_add_to_group.group = group
+        user_add_to_group.save()
+        return HttpResponse(status=201)
+    else:
+        context = {
+            'users': users,
+            'group': group,
+        }
+        return render(request, 'group/add_member.html', context)

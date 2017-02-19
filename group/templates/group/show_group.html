@@ -21,16 +21,21 @@ Group
 </div>
 
     </div>
+
+    <!-- Add member button -->
+    <a href="/group/{{ group.id }}/add_member/" > <button type="button" class="btn btn-sm btn-primary">Add member</button></a>
+
     <div class="panel panel-default">
   <!-- Default panel contents -->
+
   <div class="panel-heading">MEMBERS:</div>
   <!-- List group -->
         {% for user in users %}
-  <ul class="list-group">
-    <li class="list-group-item">
-    {{ user.username }}
-</li>
-  </ul>
-    {% endfor %}
+            <ul class="list-group">
+                <li class="list-group-item">
+                {{ user.username }}
+                </li>
+            </ul>
+        {% endfor %}
 </div>
 {% endblock %}
