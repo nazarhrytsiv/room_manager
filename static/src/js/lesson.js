@@ -25,3 +25,27 @@ $(document).ready(function () {
         });
     });
 });
+
+function update_lesson(id) {
+
+    var _data = {
+            'id': id ,
+            'name': $('#id_name_lesson').val(),
+            'description': $('#id_description_lesson').val(),
+            'place': $('#id_place_lesson').val(),
+            'timeout': $('#id_timeout_lesson').val()
+        };
+
+    $.ajax({
+            type: "PUT",
+            url: '/lesson/'+ id + '/edit/',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(_data),
+            success: function (respons) {
+                console.log(respons);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+}

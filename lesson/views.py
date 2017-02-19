@@ -28,16 +28,11 @@ def create(request):
 
 def edit(request, pk):
     post = Lesson.get(pk=pk)
-    if request.method == "POST":
-        data = {}
-        result = request.body.split('&')
-        for i in result:
-            data.update(dict([i.split("="), ]))
-        lesson = Lesson(name=data['name'], place=data['place'], description=data['description'],
-                        timeout=data['timeout'], )
-        lesson.id = pk
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        lesson = Lesson(**data)
         lesson.save()
-        return redirect('/lesson')
+        return HttpResponse(status=200)
     else:
         context = {
             'post': post
