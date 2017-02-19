@@ -5,38 +5,38 @@
         <h1>New post</h1>
     </div>
     <div class="spacer"></div>
-    <form method="POST" class="post-form">
+    <form class="post-form">
         <div class="line">
 
             <h>Username:</h>
             <label>
-                <input id="id_username" maxlength="30" name="username" type="text" value="{{ post.username }}" >
+                <input id="id_username_user" maxlength="30" name="username" type="text" value="{{ post.username }}" >
             </label>
         </div>
         <div class="line">
 
             <h>Name:</h>
             <label>
-                <input id="id_name" maxlength="30" name="name" type="text" value="{{ post.name }}">
+                <input id="id_name_user" maxlength="30" name="name" type="text" value="{{ post.name }}">
             </label>
         </div>
         <div class="line">
 
             <h>Email:</h>
             <label>
-                <input id="id_email" maxlength="30" name="email" type="text"value="{{ post.email }}">
+                <input id="id_email_user" maxlength="30" name="email" type="text"value="{{ post.email }}">
             </label>
         </div>
         <div class="line">
 
             <h>Password:</h>
             <label>
-                <input id="id_password" maxlength="30" name="password" type="text" value="{{ post.password }}">
+                <input id="id_password_user" maxlength="30" name="password" type="text" value="{{ post.password }}">
             </label>
         </div>
 
-        <button type="submit" id="save_user" class="save btn btn-default">Save</button>
-
     </form>
+    <button id="update_user" class="save btn btn-default" onclick="update_user({{ post.id }})">Save</button>
+
 
 {% endblock %}

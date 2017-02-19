@@ -25,19 +25,15 @@ def create(request):
 
 def edit(request, pk):
     post = User.get(pk=pk)
-    if request.method == "POST":
-        data = {}
-        result = request.body.split('&')
-        for i in result:
-            data.update(dict([i.split("="), ]))
-        user = User(username=data['username'], name=data['name'], email=data['email'], password=data['password'], )
-        user.id = pk
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        user = User(**data)
         user.save()
-        return redirect('/user')
+        return HttpResponse(status=200)
     else:
         context = {
-                'post': post
-            }
+            'post': post
+        }
         return render(request, 'user/edit.html', context)
 
 def delete(request):
