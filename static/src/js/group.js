@@ -48,7 +48,7 @@ $(document).ready(function () {
 // });
 
 
-function update_object(id) {
+function update_group(id) {
 
     var _data = {
             'id': id ,
