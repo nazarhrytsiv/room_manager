@@ -30,7 +30,7 @@ def edit(request, pk):
         data = json.loads(request.body)
         group = Group(**data)
         group.save()
-        return HttpResponse(status=201)
+        return HttpResponse(status=200)
     else:
         context = {
             'post': post

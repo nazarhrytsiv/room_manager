@@ -27,15 +27,11 @@ def create(request):
 
 def edit(request, pk):
     post = Room.get(pk=pk)
-    if request.method == "POST":
-        data = {}
-        result = request.body.split('&')
-        for i in result:
-            data.update(dict([i.split("="), ]))
-        room = Room(name=data['name'], type=data['type'], description=data['description'], size=data['size'], )
-        room.id = pk
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        room = Room(**data)
         room.save()
-        return redirect('/room')
+        return HttpResponse(status=200)
     else:
         context = {
             'post': post
