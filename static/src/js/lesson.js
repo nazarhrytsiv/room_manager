@@ -14,7 +14,6 @@ $(document).ready(function () {
             type: "POST",
             url: '/lesson/create/',
             contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
             data: JSON.stringify(_data),
             success: function (_data) {
                 console.log(_data);
