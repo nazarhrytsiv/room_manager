@@ -50,3 +50,24 @@ function update_user(id) {
             }
         });
 }
+
+
+function delete_user(id) {
+
+    var _data = {
+        'id': id
+    };
+
+    $.ajax({
+        type: "DELETE",
+        url: '/user/delete/',
+        data: JSON.stringify(_data),
+        success: function (response) {
+            $("#hide_" + id).remove();
+            console.log(response);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}

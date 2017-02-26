@@ -50,3 +50,23 @@ function update_room(id) {
         });
 }
 
+function delete_room(id) {
+
+    var _data = {
+        'id': id
+    };
+
+    $.ajax({
+        type: "DELETE",
+        url: '/room/delete/',
+        data: JSON.stringify(_data),
+        success: function (response) {
+            $("#hide_" + id).remove();
+            console.log(response);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
+

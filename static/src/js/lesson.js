@@ -8,7 +8,6 @@ $(document).ready(function () {
             'name': $('#id_name_lesson').val(),
             'place': $('#id_place_lesson').val(),
             'description': $('#id_description_lesson').val(),
-            'timeout': $('#id_timeout_lesson').val()
         };
         $.ajax({
             type: "POST",
@@ -32,7 +31,6 @@ function update_lesson(id) {
             'name': $('#id_name_lesson').val(),
             'description': $('#id_description_lesson').val(),
             'place': $('#id_place_lesson').val(),
-            'timeout': $('#id_timeout_lesson').val()
         };
 
     $.ajax({
@@ -47,4 +45,24 @@ function update_lesson(id) {
                 console.log(err);
             }
         });
+}
+
+function delete_lesson(id) {
+
+    var _data = {
+        'id': id
+    };
+
+    $.ajax({
+        type: "DELETE",
+        url: '/lesson/delete/',
+        data: JSON.stringify(_data),
+        success: function (response) {
+            $("#hide_" + id).remove();
+            console.log(response);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
 }
