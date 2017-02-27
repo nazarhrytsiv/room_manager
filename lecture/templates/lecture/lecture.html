@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Lectures
+{% endblock %}
+
+{% block content %}
+
+
+      <div class="page-header">
+        <h1>Lectures</h1>
+      <p>
+          <a href="create/" > <button type="button" class="btn btn-sm btn-primary">+ New lecture</button></a>
+      </p>
+      </div>
+      <div class="row">
+
+        <div class="colon">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Lesson</th>
+                <th>Group</th>
+                <th>Room</th>
+                <th>Teacher</th>
+                <th>Number by schedule</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for lecture in lectures %}
+
+    <tr id="hide_{{ lecture.id }}" xmlns="http://www.w3.org/1999/html">
+        <td>{{ lecture.id }}</td>
+        <td>{{ lecture.lesson }}</td>
+        <td>{{ lecture.group }}</td>
+		<td>{{ lecture.room }}</td>
+		<td>{{ lecture.teacher }}</td>
+		<td>{{ lecture.number_by_schedule }}</td>
+
+    <td style="width: 150px">
+        <a href="{{lecture.id }}/edit/" ><button type="button" class="btn btn-sm btn-warning">Edit</button></a>
+      <button type="button"
+              class="btn btn-danger btn-sm js-delete-book"
+              onclick="delete_object({{room.id }})">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+
+
+
+
+    </td>
+  </tr>
+
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">No lectures</td>
+  </tr>
+{% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+     <!-- /container -->
+
+{% endblock %}
