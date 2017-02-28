@@ -8,31 +8,56 @@
     <form class="post-form">
         <div class="line">
 
-            <h>Name:</h>
+            <h>Lesson:</h>
             <label>
-                <input id="id_name_room" maxlength="30" name="name" type="text">
+                <select id="id_lesson_lecture">
+                    {% for lesson in lessons %}
+                        <option>{{ lesson.name }}</option>
+                    {% endfor %}
+                </select>
             </label>
         </div>
         <div class="line">
 
-            <h>Type:</h>
+            <h>Group:</h>
             <label>
-                <input id="id_type_room" maxlength="30" name="type" type="text">
+                <select id="id_group_lecture">
+                    {% for group in groups %}
+                        <option>{{ group.name }}</option>
+                    {% endfor %}
+                </select>
             </label>
         </div>
         <div class="line">
-        <h> Description:</h>
-        <label><textarea cols="40" id="id_description_room" maxlength="620" name="description" rows="10"></textarea></label>
+        <h> Room:</h>
+        <label>
+                <select id="id_room_lecture">
+                    {% for room in rooms %}
+                        <option>{{ room.name }}</option>
+                    {% endfor %}
+                </select>
+        </label>
     </div>
         <div class="line">
 
-            <h>Size:</h>
+            <h>Teacher:</h>
             <label>
-                <input id="id_size_room" maxlength="30" name="size" type="text">
+                <select id="id_teacher_lecture">
+                    {% for teacher in teachers %}
+                        <option>{{ teacher.name }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Number by schedule:</h>
+            <label>
+                <input id="id_number_by_schedule_lecture" maxlength="30"  type="text">
             </label>
         </div>
 
     </form>
-    <button id="save_room" class="save btn btn-default">Save</button>
+    <button id="save_lecture" class="save btn btn-default">Save</button>
 
 {% endblock %}

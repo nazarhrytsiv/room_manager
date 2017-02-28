@@ -3,6 +3,7 @@
  */
 
 $(document).ready(function () {
+
     $('#save_lesson').on('click', function () {
         var _data = {
             'name': $('#id_name_lesson').val(),
