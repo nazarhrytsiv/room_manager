@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Schedule
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Schedule</h1>
+        <h>Group:</h>
+        <label>
+            <select id="group_name">
+                {% for group in groups %}
+                    <option>{{ group.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <p>
+            <button id="get_group" type="button" class="btn btn-sm btn-primary">Find!</button>
+        </p>
+    </div>
+    <!-- Calendar -->
+
+    <div id='calendar'></div>
+{% endblock %}
