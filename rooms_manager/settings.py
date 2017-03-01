@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'user',
     'group',
     'lecture',
+    'schedule',
 ]
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

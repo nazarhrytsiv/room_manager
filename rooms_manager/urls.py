@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^room/', include('room.urls')),
     url(r'^group/', include('group.urls')),
     url(r'^lecture/', include('lecture.urls')),
+    url(r'^schedule/', include('schedule.urls')),
 ]

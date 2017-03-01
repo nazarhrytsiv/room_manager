@@ -14,9 +14,11 @@ class Lecture(models.Model):
     teacher = models.OneToOneField('user.User', null=True, on_delete=models.SET_NULL, default=None,
                                   related_name='teacher')
     number_by_schedule = models.IntegerField(default=1)
+    date = models.DateTimeField()
+
 
     def __str__(self):
-        return self.id
+        return 'lecture'+str(self.id)
 
     @staticmethod
     def get_all():
