@@ -25,6 +25,7 @@ Lectures
                 <th>Room</th>
                 <th>Teacher</th>
                 <th>Number by schedule</th>
+                <th>Date and time:</th>
               </tr>
             </thead>
             <tbody>
@@ -37,6 +38,7 @@ Lectures
 		<td>{{ lecture.room }}</td>
 		<td>{{ lecture.teacher }}</td>
 		<td>{{ lecture.number_by_schedule }}</td>
+        <td>{{ lecture.date_time }}</td>
 
     <td style="width: 150px">
         <a href="{{lecture.id }}/edit/" ><button type="button" class="btn btn-sm btn-warning">Edit</button></a>

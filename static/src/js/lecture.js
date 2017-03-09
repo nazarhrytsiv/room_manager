@@ -11,6 +11,7 @@ $(document).ready(function () {
             'room': $('#id_room_lecture').val(),
             'teacher': $('#id_teacher_lecture').val(),
             'number_by_schedule': $('#id_number_by_schedule_lecture').val(),
+            'date_time': $('#id_date_time_lecture').val(),
         };
         $.ajax({
             type: "POST",

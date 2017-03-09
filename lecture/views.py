@@ -23,7 +23,11 @@ def create(request):
         group = Group.objects.get(name=data['group'])
         room = Room.objects.get(name=data['room'])
         teacher = User.objects.get(name=data['teacher'])
-        lecture = Lecture(lesson=lesson,group=group,room=room,teacher=teacher)
+        number_by_schedule = data['number_by_schedule']
+        date_time = data['date_time']
+        lecture = Lecture(lesson=lesson, group=group, room=room, teacher=teacher,
+                          number_by_schedule=number_by_schedule,
+                          date_time=date_time)
         lecture.save()
         return HttpResponse(status=201)
     else:
@@ -32,7 +36,7 @@ def create(request):
         rooms = Room.objects.all()
         teachers = User.objects.all()
         context = {
-            'lessons':lessons,
+            'lessons': lessons,
             'groups': groups,
             'rooms': rooms,
             'teachers': teachers,

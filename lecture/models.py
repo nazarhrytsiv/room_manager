@@ -14,7 +14,7 @@ class Lecture(models.Model):
     teacher = models.OneToOneField('user.User', null=True, on_delete=models.SET_NULL, default=None,
                                   related_name='teacher')
     number_by_schedule = models.IntegerField(default=1)
-    date = models.DateTimeField()
+    date_time = models.DateTimeField()
 
 
     def __str__(self):

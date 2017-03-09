@@ -17,11 +17,11 @@ def group_schedule(request):
         group = Group.objects.get(name=events['name'])
         lecture = Lecture.objects.get(group=group)
 
-        date =''.join([x for x in 'T'.join(str(lecture.date).split())][:-6])
-        print(date)
+        #date =''.join([x for x in 'T'.join(str(lecture.date_time).split())][:-6])
+        #print(date)
         data = {
             'title': str(lecture.lesson),
-            'start': date
+            'start': lecture.date_time
         }
         return JsonResponse(data)
     else:

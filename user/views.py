@@ -16,7 +16,6 @@ def users(request):
 def create(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        print data
         user = User(**data)
         user.save()
         return HttpResponse(status=201)
