@@ -26,5 +26,7 @@ class Group(models.Model):
 
     @staticmethod
     def get(pk):
-        group = Group.objects.get(pk=pk)
-        return group
+        try:
+            return Group.objects.get(pk=pk)
+        except:
+            return None

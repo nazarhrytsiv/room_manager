@@ -19,6 +19,8 @@ def lectures(request):
 def create(request):
     if request.method == "POST":
         data = json.loads(request.body)
+        print type(data)
+        print data
         lesson = Lesson.objects.get(name=data['lesson'])
         group = Group.objects.get(name=data['group'])
         room = Room.objects.get(name=data['room'])

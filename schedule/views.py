@@ -12,18 +12,15 @@ def schedule(request):
     return render(request, 'schedule/schedule.html', context)
 
 def group_schedule(request):
+    print "dsfdsfs"
     if request.method == "POST":
-        events = json.loads(request.body)
-        group = Group.objects.get(name=events['name'])
-        lecture = Lecture.objects.get(group=group)
+        request_data = json.loads(request.body)
+        group = Group.get(name=request_data['name'])
 
-        #date =''.join([x for x in 'T'.join(str(lecture.date_time).split())][:-6])
-        #print(date)
-        data = {
-            'title': str(lecture.lesson),
-            'start': lecture.date_time
-        }
-        return JsonResponse(data)
+        lectures = Lecture.get_by_group(group)
+        respons_data = [lecture.to_dict() for lecture in lectures]
+
+        return JsonResponse(respons_data)
     else:
         return HttpResponse(status=404)
 
