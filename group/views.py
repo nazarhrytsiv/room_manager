@@ -26,7 +26,7 @@ def create(request):
 
 
 def edit(request, pk):
-    post = Group.get(pk=pk)
+    post = Group.get_by_id(pk)
     if request.method == "PUT":
         data = json.loads(request.body)
         group = Group(**data)
@@ -48,8 +48,8 @@ def delete(request):
 
 
 def show(request, pk):
-    group = Group.get(pk=pk)
-    users = User.objects.filter(group=group)
+    group = Group.get_by_id(pk)
+    users = User.get_users_by_group(group)
     context = {
         'group': group,
         'users': users
@@ -57,12 +57,12 @@ def show(request, pk):
     return render(request, 'group/show_group.html', context)
 
 def add_member(request, pk):
-    users = User.objects.filter(group=None)
-    group = Group.get(pk=pk)
+    users = User.get_users_by_group(None)
+    group = Group.get_by_id(pk)
     if request.method == "POST":
         print 1111
         data = json.loads(request.body)
-        user_add_to_group = User.objects.get(id=data['id'])
+        user_add_to_group = User.get_by_id(data['id'])
         user_add_to_group.group = group
         user_add_to_group.save()
         return HttpResponse(status=201)

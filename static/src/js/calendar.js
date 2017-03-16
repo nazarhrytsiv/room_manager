@@ -22,9 +22,8 @@ $(document).ready(function () {
             data: JSON.stringify(_data),
 
             success: function (data_from_server) {
-                events = [
-                    data_from_server
-                ];
+                events = data_from_server;
+
 
                 $('#calendar').fullCalendar('removeEvents');
                 $('#calendar').fullCalendar('addEventSource', events);

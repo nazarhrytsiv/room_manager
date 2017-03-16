@@ -1,18 +1,18 @@
 from __future__ import unicode_literals
-
+import datetime
 from django.db import models
 
 
 # Create your models here.
 
 class Lecture(models.Model):
-    lesson = models.OneToOneField('lesson.Lesson', null=True, on_delete=models.SET_NULL, default=None,
+    lesson = models.ForeignKey('lesson.Lesson', null=True, on_delete=models.SET_NULL, default=None,
                                   related_name='lesson')
-    group = models.OneToOneField('group.Group', null=True, on_delete=models.SET_NULL, default=None,
+    group = models.ForeignKey('group.Group', null=True, on_delete=models.SET_NULL, default=None,
                                  related_name='group')
-    room = models.OneToOneField('room.Room', null=True, on_delete=models.SET_NULL, default=None,
+    room = models.ForeignKey('room.Room', null=True, on_delete=models.SET_NULL, default=None,
                                 related_name='room')
-    teacher = models.OneToOneField('user.User', null=True, on_delete=models.SET_NULL, default=None,
+    teacher = models.ForeignKey('user.User', null=True, on_delete=models.SET_NULL, default=None,
                                    related_name='teacher')
     number_by_schedule = models.IntegerField(default=1)
     date_time = models.DateTimeField()
@@ -27,7 +27,7 @@ class Lecture(models.Model):
 
     def to_dict(self):
         return {
-            "titel": self.lesson.name,
+            "title": self.lesson.name,
             "start": self.date_time
         }
 

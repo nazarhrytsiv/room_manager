@@ -27,6 +27,15 @@ class Room(models.Model):
         return rooms
 
     @staticmethod
-    def get(pk):
-        room = Room.objects.get(pk=pk)
-        return room
+    def get_by_id(pk):
+        try:
+            return  Room.objects.get(pk=pk)
+        except:
+            return None
+
+    @staticmethod
+    def get_by_room_name(room):
+        try:
+            return Room.objects.get(name=room)
+        except:
+            return None

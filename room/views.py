@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Room
-from django.shortcuts import redirect
 from django.http import HttpResponse
 import json
 
@@ -26,7 +25,7 @@ def create(request):
 
 
 def edit(request, pk):
-    post = Room.get(pk=pk)
+    post = Room.get_by_id(pk=pk)
     if request.method == "PUT":
         data = json.loads(request.body)
         room = Room(**data)
@@ -48,7 +47,7 @@ def delete(request):
 
 
 def show_room(request, room_id):
-    room = get_object_or_404(Room, id=room_id)
+    room = Room.get_by_id(room_id)
     return render(request, 'room/show_room.html', {'room': room})
 
 

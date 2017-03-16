@@ -25,8 +25,16 @@ class Group(models.Model):
         return groups
 
     @staticmethod
-    def get(pk):
+    def get_by_id(pk):
         try:
             return Group.objects.get(pk=pk)
         except:
             return None
+
+    @staticmethod
+    def get_by_group_name(group_name):
+        try:
+            return Group.objects.get(name=group_name)
+        except:
+            return None
+

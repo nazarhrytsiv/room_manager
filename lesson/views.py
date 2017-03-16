@@ -7,7 +7,7 @@ from .models import Lesson
 
 # Create your views here.
 def lessons(request):
-    lessons = Lesson.objects.all()
+    lessons = Lesson.get_all()
     context = {
         'lessons': lessons
     }
@@ -25,7 +25,7 @@ def create(request):
 
 
 def edit(request, pk):
-    post = Lesson.get(pk=pk)
+    post = Lesson.get_by_id(pk=pk)
     if request.method == "PUT":
         data = json.loads(request.body)
         lesson = Lesson(**data)

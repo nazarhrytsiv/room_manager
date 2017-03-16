@@ -28,6 +28,20 @@ class User(models.Model):
         return users
 
     @staticmethod
-    def get(pk):
+    def get_by_id(pk):
         user = User.objects.get(pk=pk)
         return user
+
+    @staticmethod
+    def get_users_by_group(group_name):
+        try:
+            return User.objects.filter(group=group_name)
+        except:
+            return None
+
+    @staticmethod
+    def get_by_username(username):
+        try:
+            return User.objects.get(name=username)
+        except:
+            return None

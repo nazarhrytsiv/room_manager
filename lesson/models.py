@@ -24,6 +24,13 @@ class Lesson(models.Model):
         return lessons
 
     @staticmethod
-    def get(pk):
+    def get_by_id(pk):
         lesson = Lesson.objects.get(pk=pk)
         return lesson
+
+    @staticmethod
+    def get_by_lesson_name(lesson):
+        try:
+            return Lesson.objects.get(name=lesson)
+        except:
+            return None

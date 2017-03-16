@@ -19,12 +19,10 @@ def lectures(request):
 def create(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        print type(data)
-        print data
-        lesson = Lesson.objects.get(name=data['lesson'])
-        group = Group.objects.get(name=data['group'])
-        room = Room.objects.get(name=data['room'])
-        teacher = User.objects.get(name=data['teacher'])
+        lesson = Lesson.get_by_lesson_name(data['lesson'])
+        group = Group.get_by_group_name(data['group'])
+        room = Room.get_by_room_name(data['room'])
+        teacher = User.get_by_username(data['teacher'])
         number_by_schedule = data['number_by_schedule']
         date_time = data['date_time']
         lecture = Lecture(lesson=lesson, group=group, room=room, teacher=teacher,
@@ -33,10 +31,10 @@ def create(request):
         lecture.save()
         return HttpResponse(status=201)
     else:
-        lessons = Lesson.objects.all()
-        groups = Group.objects.all()
-        rooms = Room.objects.all()
-        teachers = User.objects.all()
+        lessons = Lesson.get_all()
+        groups = Group.get_all()
+        rooms = Room.get_all()
+        teachers = User.get_all()
         context = {
             'lessons': lessons,
             'groups': groups,

@@ -6,7 +6,7 @@ from .models import User
 
 # Create your views here.
 def users(request):
-    users = User.objects.all()
+    users = User.get_all()
     context = {
         'users': users
     }
@@ -24,7 +24,7 @@ def create(request):
 
 
 def edit(request, pk):
-    post = User.get(pk=pk)
+    post = User.get_by_id(pk=pk)
     if request.method == "PUT":
         data = json.loads(request.body)
         user = User(**data)
