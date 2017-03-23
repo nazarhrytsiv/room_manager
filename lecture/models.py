@@ -39,3 +39,12 @@ class Lecture(models.Model):
     def get_by_id(pk):
         lecture = Lecture.objects.get(pk=pk)
         return lecture
+
+    @staticmethod
+    def delete_by_id(id):
+        try:
+            lecture = Lecture.objects.get(pk=id)
+            lecture.delete()
+            return True
+        except:
+            return False

@@ -78,25 +78,25 @@ function update_lecture(id) {
         });
 }
 
-// function delete_group(id) {
-//
-//     var _data = {
-//         'id': id
-//     };
-//
-//     $.ajax({
-//         type: "DELETE",
-//         url: '/group/delete/',
-//         data: JSON.stringify(_data),
-//         success: function (response) {
-//             $("#hide_" + id).remove();
-//             console.log(response);
-//         },
-//         error: function (err) {
-//             console.log(err);
-//         }
-//     });
-// }
+function delete_lecture(id) {
+
+    var _data = {
+        'id': id
+    };
+
+    $.ajax({
+        type: "DELETE",
+        url: '/lecture/delete/',
+        data: JSON.stringify(_data),
+        success: function (response) {
+            $("#hide_" + id).remove();
+            console.log(response);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
 
 
 

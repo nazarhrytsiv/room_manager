@@ -73,3 +73,12 @@ def edit(request, pk):
             'post': post,
         }
         return render(request, 'lecture/edit.html', context)
+
+
+def delete(request):
+    data = json.loads(request.body)
+    if request.method == "DELETE":
+        if Lecture.delete_by_id(data['id']):
+            return HttpResponse(status=200)
+    return HttpResponse(status=400)
+
