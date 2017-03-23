@@ -10,7 +10,7 @@ $(document).ready(function () {
         editable: true,
         eventLimit: true, // allow "more" link when too many events
     });
-    $('#get_group').on('click', function () {
+    $('#group_name').on('change', function () {
         var _data = {
             'name': $('#group_name').val(),
         };

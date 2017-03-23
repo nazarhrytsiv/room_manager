@@ -60,7 +60,6 @@ def edit(request, pk):
         lecture.save()
         return HttpResponse(status=200)
     else:
-        print "here"
         lessons = Lesson.get_all()
         groups = Group.get_all()
         rooms = Room.get_all()
