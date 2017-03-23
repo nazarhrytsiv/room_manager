@@ -34,3 +34,8 @@ class Lecture(models.Model):
     @staticmethod
     def get_by_group(group):
         return Lecture.objects.filter(group=group)
+
+    @staticmethod
+    def get_by_id(pk):
+        lecture = Lecture.objects.get(pk=pk)
+        return lecture

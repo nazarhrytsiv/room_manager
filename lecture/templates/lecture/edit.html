@@ -2,38 +2,69 @@
 
 {% block content %}
     <div class="post-title">
-        <h1>New post</h1>
+        <h1>New lecture</h1>
     </div>
     <div class="spacer"></div>
     <form class="post-form">
         <div class="line">
 
-            <h>Name:</h>
+            <h>Lesson:</h>
             <label>
-                <input id="id_name_room" maxlength="30" name="name" type="text" value="{{ post.name }}">
+                <select id="id_lesson_lecture">
+                    {% for lesson in lessons %}
+                        <option>{{ lesson.name }}</option>
+                    {% endfor %}
+                </select>
             </label>
         </div>
         <div class="line">
 
-            <h>Type:</h>
+            <h>Group:</h>
             <label>
-                <input id="id_type_room" maxlength="30" name="type" type="text" value="{{ post.type }}">
+                <select id="id_group_lecture">
+                    {% for group in groups %}
+                        <option>{{ group.name }}</option>
+                    {% endfor %}
+                </select>
             </label>
         </div>
         <div class="line">
-            <h> Description:</h>
-            <label><textarea cols="40" id="id_description_room" maxlength="620" name="description"
-                             rows="10">{{ post.description }}</textarea></label>
+        <h> Room:</h>
+        <label>
+                <select id="id_room_lecture">
+                    {% for room in rooms %}
+                        <option>{{ room.name }}</option>
+                    {% endfor %}
+                </select>
+        </label>
+    </div>
+        <div class="line">
+
+            <h>Teacher:</h>
+            <label>
+                <select id="id_teacher_lecture">
+                    {% for teacher in teachers %}
+                        <option>{{ teacher.name }}</option>
+                    {% endfor %}
+                </select>
+            </label>
         </div>
         <div class="line">
 
-            <h>Size:</h>
+            <h>Number by schedule:</h>
             <label>
-                <input id="id_size_room" maxlength="30" name="size" type="text" value="{{ post.size }}">
+                <input id="id_number_by_schedule_lecture" maxlength="30"  type="text">
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Date and time:</h>
+            <label>
+                <input id="id_date_time_lecture" type="datetime-local">
             </label>
         </div>
 
     </form>
-    <button id="update_room" class="save btn btn-default" onclick="update_room({{ post.id }})">Save</button>
+    <button id="update_lecture" class="save btn btn-default" onclick="update_lecture({{ post.id }})">Save</button>
 
 {% endblock %}

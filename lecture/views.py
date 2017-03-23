@@ -42,3 +42,34 @@ def create(request):
             'teachers': teachers,
         }
         return render(request, 'lecture/create.html', context=context)
+
+
+def edit(request, pk):
+    post = Lecture.get_by_id(pk=pk)
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        lesson = Lesson.get_by_lesson_name(data['lesson'])
+        group = Group.get_by_group_name(data['group'])
+        room = Room.get_by_room_name(data['room'])
+        teacher = User.get_by_username(data['teacher'])
+        number_by_schedule = data['number_by_schedule']
+        date_time = data['date_time']
+        lecture = Lecture(pk=pk, lesson=lesson, group=group, room=room, teacher=teacher,
+                          number_by_schedule=number_by_schedule,
+                          date_time=date_time)
+        lecture.save()
+        return HttpResponse(status=200)
+    else:
+        print "here"
+        lessons = Lesson.get_all()
+        groups = Group.get_all()
+        rooms = Room.get_all()
+        teachers = User.get_all()
+        context = {
+            'lessons': lessons,
+            'groups': groups,
+            'rooms': rooms,
+            'teachers': teachers,
+            'post': post,
+        }
+        return render(request, 'lecture/edit.html', context)
