@@ -3,6 +3,9 @@
  */
 
 $(document).ready(function () {
+    $(".item").on('focus', function () {
+        $(this).removeClass("invalid");
+    });
     $('#save_room').on('click', function () {
         var _data = {
             'name': $('#id_name_room').val(),
@@ -22,11 +25,16 @@ $(document).ready(function () {
             },
             error: function (data) {
                 errors = JSON.parse(data.responseText);
-                console.log(errors);
+                for (let err in errors) {
+                    $("#id_"+err+"_room").addClass("invalid");
+                    $("#id_warning_"+err).text(errors[err]).removeClass("invisible");
+                }
             }
         });
     });
 });
+
+
 
 function update_room(id) {
 

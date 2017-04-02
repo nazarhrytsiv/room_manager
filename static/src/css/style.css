@@ -66,3 +66,30 @@
 .btn-default{
     margin-top: 5px;
 }
+
+
+/* validate room-create*/
+
+
+.invalid {
+    outline-offset: -2px;
+    outline :  none;
+    box-shadow: 0 0 5px rgb(238, 110, 96);
+    border: 2px solid rgba(217, 0, 0, 0.56);
+}
+
+.invisible {
+    visibility: hidden;
+}
+/**********************/
+
+
+
+
+
+
+
+
+
+
+

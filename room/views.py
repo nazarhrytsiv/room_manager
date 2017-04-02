@@ -24,9 +24,12 @@ def validate_data_room(room):
     else:
         errors['description'] = "This field is required."
     try:
-        size = int(room['size'])
-        if size < 10:
-            errors['size'] = 'Size must be greater than 10'
+        if not room['size']:
+            errors['size'] = "This field is required."
+        else:
+            size = int(room['size'])
+            if size < 10:
+                errors['size'] = 'Size must be greater than 10'
     except:
         errors['size'] = "Size must be integer."
 
