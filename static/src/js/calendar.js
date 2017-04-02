@@ -5,7 +5,7 @@ $(document).ready(function () {
             center: 'title',
             right: 'month,basicWeek,basicDay'
         },
-        defaultDate: '2017-03-01',
+        defaultDate: '2017-04-01',
         navLinks: true, // can click day/week names to navigate views
         editable: true,
         eventLimit: true, // allow "more" link when too many events

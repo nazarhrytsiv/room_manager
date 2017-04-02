@@ -14,13 +14,15 @@ $(document).ready(function () {
             type: "POST",
             url: '/room/create/',
             contentType: 'application/json; charset=utf-8',
+            //dataType: 'json',
             data: JSON.stringify(_data),
             async: false,
             success: function (_data) {
-                console.log(_data);
+                console.log('created!');
             },
-            error: function (_data) {
-                console.log(_data);
+            error: function (data) {
+                errors = JSON.parse(data.responseText);
+                console.log(errors);
             }
         });
     });
