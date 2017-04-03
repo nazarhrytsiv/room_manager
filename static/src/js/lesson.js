@@ -3,6 +3,10 @@
  */
 
 $(document).ready(function () {
+    $(".item").on('focus', function () {
+        $(this).removeClass("invalid");
+        $(this).next().addClass("invisible");
+    });
 
     $('#save_lesson').on('click', function () {
         var _data = {
@@ -18,8 +22,12 @@ $(document).ready(function () {
             success: function (_data) {
                 console.log(_data);
             },
-            error: function (_data) {
-                console.log(_data);
+            error: function (data) {
+                errors = JSON.parse(data.responseText);
+                for (let err in errors) {
+                    $("#id_" + err + "_lesson").addClass("invalid");
+                    $("#id_warning_" + err).text(errors[err]).removeClass("invisible");
+                }
             }
         });
     });
@@ -28,24 +36,24 @@ $(document).ready(function () {
 function update_lesson(id) {
 
     var _data = {
-            'id': id ,
-            'name': $('#id_name_lesson').val(),
-            'description': $('#id_description_lesson').val(),
-            'place': $('#id_place_lesson').val(),
-        };
+        'id': id,
+        'name': $('#id_name_lesson').val(),
+        'description': $('#id_description_lesson').val(),
+        'place': $('#id_place_lesson').val(),
+    };
 
     $.ajax({
-            type: "PUT",
-            url: '/lesson/'+ id + '/edit/',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(_data),
-            success: function (respons) {
-                console.log(respons);
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        });
+        type: "PUT",
+        url: '/lesson/' + id + '/edit/',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(_data),
+        success: function (respons) {
+            console.log(respons);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
 }
 
 function delete_lesson(id) {

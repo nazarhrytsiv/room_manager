@@ -5,6 +5,7 @@
 $(document).ready(function () {
     $(".item").on('focus', function () {
         $(this).removeClass("invalid");
+        $(this).next().addClass("invisible");
     });
     $('#save_room').on('click', function () {
         var _data = {
@@ -17,7 +18,6 @@ $(document).ready(function () {
             type: "POST",
             url: '/room/create/',
             contentType: 'application/json; charset=utf-8',
-            //dataType: 'json',
             data: JSON.stringify(_data),
             async: false,
             success: function (_data) {
