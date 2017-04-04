@@ -66,7 +66,7 @@ def edit(request, pk):
         errors = validate_data_room(data)
         if not errors:
             room = Room(**data)
-            room.save()
+            group.save()
             return HttpResponse(status=201)
         else:
             return HttpResponse(json.dumps(errors), status=400)
@@ -74,7 +74,7 @@ def edit(request, pk):
         context = {
             'post': post
         }
-        return render(request, 'room/edit.html', context)
+        return render(request, 'group/edit.html', context)
 
 
 
