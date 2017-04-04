@@ -3,6 +3,10 @@
  */
 
 $(document).ready(function () {
+    $(".item").on('focus', function () {
+        $(this).removeClass("invalid");
+        $(this).next().addClass("invisible");
+    });
     $('#save_user').on('click', function () {
         var _data = {
             'username': $('#id_username_user').val(),
@@ -17,10 +21,14 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(_data),
             success: function (_data) {
-                console.log(_data);
+                console.log('created!');
             },
-            error: function (_data) {
-                console.log(_data);
+            error: function (data) {
+                errors = JSON.parse(data.responseText);
+                for (let err in errors) {
+                    $("#id_"+err+"_user").addClass("invalid");
+                    $("#id_warning_"+err).text(errors[err]).removeClass("invisible");
+                }
             }
         });
     });

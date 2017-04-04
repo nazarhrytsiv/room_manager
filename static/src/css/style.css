@@ -81,6 +81,10 @@
 .invisible {
     visibility: hidden;
 }
+
+.warning-text {
+    color: #ee4845;
+}
 /**********************/
 
 
