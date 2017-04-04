@@ -50,12 +50,16 @@ def create(request):
 
 
 def edit(request, pk):
-    post = Lesson.get_by_id(pk=pk)
+    post = Lesson.get_by_id(pk)
     if request.method == "PUT":
         data = json.loads(request.body)
-        lesson = Lesson(**data)
-        lesson.save()
-        return HttpResponse(status=200)
+        errors = validate_data_lesson(data)
+        if not errors:
+            lesson = Lesson(**data)
+            lesson.save()
+            return HttpResponse(status=201)
+        else:
+            return HttpResponse(json.dumps(errors), status=400)
     else:
         context = {
             'post': post

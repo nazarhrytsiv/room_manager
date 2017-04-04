@@ -17,7 +17,9 @@ def validate_data_user(user):
     else:
         errors['name'] = "This field is required."
     if user['email']:
-        if len(user['email']) > 40:
+        if user['email'].find('@') == -1:
+            errors['email'] = "Incorrect email. Did you forget about '@'?"
+        elif len(user['email']) > 40:
             errors['email'] = "Max input length is set to 40 characters."
     else:
         errors['email'] = "This field is required."
@@ -55,17 +57,23 @@ def create(request):
 
 
 def edit(request, pk):
-    post = User.get_by_id(pk=pk)
+    post = User.get_by_id(pk)
     if request.method == "PUT":
         data = json.loads(request.body)
-        user = User(**data)
-        user.save()
-        return HttpResponse(status=200)
+        errors = validate_data_user(data)
+        if not errors:
+            user = User(**data)
+            user.save()
+            return HttpResponse(status=201)
+        else:
+            return HttpResponse(json.dumps(errors), status=400)
     else:
         context = {
             'post': post
         }
         return render(request, 'user/edit.html', context)
+
+
 
 def delete(request):
     data = json.loads(request.body)

@@ -23,58 +23,42 @@ $(document).ready(function () {
             error: function (data) {
                 errors = JSON.parse(data.responseText);
                 for (let err in errors) {
-                    $("#id_"+err+"_group").addClass("invalid");
-                    $("#id_warning_"+err).text(errors[err]).removeClass("invisible");
+                    $("#id_" + err + "_group").addClass("invalid");
+                    $("#id_warning_" + err).text(errors[err]).removeClass("invisible");
                 }
             }
         });
     });
 });
 
-// $(document).ready(function () {
-//
-//     $('#update_group').on('click', function () {
-//         var _data = {
-//             'id':  ,
-//             'name': $('#id_name_group').val(),
-//             'description': $('#id_description_group').val()
-//         };
-//         $.ajax({
-//             type: "PUT",
-//             url: '/group/'+ id +'/edit/',
-//             contentType: 'application/json; charset=utf-8',
-//             data: JSON.stringify(_data),
-//             success: function (respons) {
-//                 console.log(respons);
-//             },
-//             error: function (err) {
-//                 console.log(err);
-//             }
-//         });
-//     });
-// });
-
 
 function update_group(id) {
-
+    $(".item").on('focus', function () {
+        $(this).removeClass("invalid");
+        $(this).next().addClass("invisible");
+    });
     var _data = {
-            'id': id ,
-            'name': $('#id_name_group').val(),
-            'description': $('#id_description_group').val()
-        };
+        'id': id,
+        'name': $('#id_name_group').val(),
+        'description': $('#id_description_group').val()
+    };
 
     $.ajax({
-            type: "PUT",
-            url: '/group/'+ id +'/edit/',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(_data),
-            success: function (respons) {
-                console.log(respons);
-            },
-            error: function (err) {
-                console.log(err);
+        type: "PUT",
+        url: '/group/' + id + '/edit/',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(_data),
+        success: function (response) {
+            console.log('edited!');
+        },
+        error: function (data) {
+            errors = JSON.parse(data.responseText);
+            for (let err in errors) {
+                $("#id_" + err + "_group").addClass("invalid");
+                $("#id_warning_" + err).text(errors[err]).removeClass("invisible");
             }
-        });
+        }
+    });
 }
 
 function delete_group(id) {
@@ -97,24 +81,24 @@ function delete_group(id) {
     });
 }
 
-function add_member_to_group(user_id,group_id) {
+function add_member_to_group(user_id, group_id) {
 
     var _data = {
-            'id': user_id
-        };
+        'id': user_id
+    };
 
     $.ajax({
-            type: "POST",
-            url: '/group/'+ group_id +'/add_member/',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(_data),
-            success: function (respons) {
-                console.log(respons);
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        });
+        type: "POST",
+        url: '/group/' + group_id + '/add_member/',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(_data),
+        success: function (respons) {
+            console.log(respons);
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
 }
 
 

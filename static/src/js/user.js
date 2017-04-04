@@ -26,8 +26,8 @@ $(document).ready(function () {
             error: function (data) {
                 errors = JSON.parse(data.responseText);
                 for (let err in errors) {
-                    $("#id_"+err+"_user").addClass("invalid");
-                    $("#id_warning_"+err).text(errors[err]).removeClass("invisible");
+                    $("#id_" + err + "_user").addClass("invalid");
+                    $("#id_warning_" + err).text(errors[err]).removeClass("invisible");
                 }
             }
         });
@@ -36,27 +36,34 @@ $(document).ready(function () {
 
 
 function update_user(id) {
-
+    $(".item").on('focus', function () {
+        $(this).removeClass("invalid");
+        $(this).next().addClass("invisible");
+    });
     var _data = {
-            'id': id ,
-            'username': $('#id_username_user').val(),
-            'name': $('#id_name_user').val(),
-            'email': $('#id_email_user').val(),
-            'password': $('#id_password_user').val()
-        };
+        'id': id,
+        'username': $('#id_username_user').val(),
+        'name': $('#id_name_user').val(),
+        'email': $('#id_email_user').val(),
+        'password': $('#id_password_user').val()
+    };
 
     $.ajax({
-            type: "PUT",
-            url: '/user/'+ id +'/edit/',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(_data),
-            success: function (respons) {
-                console.log(respons);
-            },
-            error: function (err) {
-                console.log(err);
+        type: "PUT",
+        url: '/user/' + id + '/edit/',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(_data),
+        success: function (respons) {
+            console.log(respons);
+        },
+        error: function (data) {
+            errors = JSON.parse(data.responseText);
+            for (let err in errors) {
+                $("#id_" + err + "_user").addClass("invalid");
+                $("#id_warning_" + err).text(errors[err]).removeClass("invisible");
             }
-        });
+        }
+    });
 }
 
 

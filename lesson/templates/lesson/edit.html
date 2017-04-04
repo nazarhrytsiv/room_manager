@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="post-title">
-        <h1>New post</h1>
+        <h1>Edit {{ post.name }}</h1>
     </div>
     <div class="spacer"></div>
     <form class="post-form">
@@ -10,28 +10,27 @@
 
             <h>Name:</h>
             <label>
-                <input id="id_name_lesson" maxlength="30" name="name" type="text" value="{{ post.name }}">
+                <input id="id_name_lesson" maxlength="30" name="name" type="text" value="{{ post.name }}" class="item">
+                <p id="id_warning_name" class="invisible warning-text">This should warn you!!!</p>
             </label>
         </div>
         <div class="line">
 
             <h>Place:</h>
             <label>
-                <input id="id_place_lesson" maxlength="30" name="place" type="text" value="{{ post.place }}">
+                <input id="id_place_lesson" maxlength="30" name="place" type="text" value="{{ post.place }}"
+                       class="item">
+                <p id="id_warning_place" class="invisible warning-text">This should warn you!!!</p>
             </label>
         </div>
         <div class="line">
             <h> Description:</h>
             <label><textarea cols="40" id="id_description_lesson" maxlength="620" name="description"
-                             rows="10">{{ post.description }}</textarea></label>
-        </div>
-        <div class="line">
-
-            <h>Timeout:</h>
-            <label>
-                <input id="id_timeout_lesson" maxlength="30" name="timeout" type="text" value="{{ post.timeout }}">
+                             rows="10" class="item">{{ post.description }}</textarea>
+                <p id="id_warning_description" class="invisible warning-text">This should warn you!!!</p>
             </label>
         </div>
+
 
     </form>
     <button id="update_lesson" class="save btn btn-default" onclick="update_lesson({{ post.id }})">Save</button>

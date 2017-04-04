@@ -34,7 +34,10 @@ $(document).ready(function () {
 });
 
 function update_lesson(id) {
-
+    $(".item").on('focus', function () {
+        $(this).removeClass("invalid");
+        $(this).next().addClass("invisible");
+    });
     var _data = {
         'id': id,
         'name': $('#id_name_lesson').val(),
@@ -47,11 +50,15 @@ function update_lesson(id) {
         url: '/lesson/' + id + '/edit/',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(_data),
-        success: function (respons) {
-            console.log(respons);
+        success: function (response) {
+            console.log('edited!');
         },
-        error: function (err) {
-            console.log(err);
+        error: function (data) {
+            errors = JSON.parse(data.responseText);
+            for (let err in errors) {
+                $("#id_" + err + "_lesson").addClass("invalid");
+                $("#id_warning_" + err).text(errors[err]).removeClass("invisible");
+            }
         }
     });
 }

@@ -34,7 +34,7 @@ def create(request):
         data = json.loads(request.body)
         errors = validate_data_group(data)
         if not errors:
-            group = User(**data)
+            group = Group(**data)
             group.save()
             return HttpResponse(status=201)
         else:
@@ -47,9 +47,13 @@ def edit(request, pk):
     post = Group.get_by_id(pk)
     if request.method == "PUT":
         data = json.loads(request.body)
-        group = Group(**data)
-        group.save()
-        return HttpResponse(status=200)
+        errors = validate_data_group(data)
+        if not errors:
+            group = Group(**data)
+            group.save()
+            return HttpResponse(status=201)
+        else:
+            return HttpResponse(json.dumps(errors), status=400)
     else:
         context = {
             'post': post

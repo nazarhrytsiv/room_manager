@@ -60,17 +60,22 @@ def room(request):
 
 
 def edit(request, pk):
-    post = Room.get_by_id(pk=pk)
+    post = Room.get_by_id(pk)
     if request.method == "PUT":
         data = json.loads(request.body)
-        room = Room(**data)
-        room.save()
-        return HttpResponse(status=200)
+        errors = validate_data_room(data)
+        if not errors:
+            room = Room(**data)
+            room.save()
+            return HttpResponse(status=201)
+        else:
+            return HttpResponse(json.dumps(errors), status=400)
     else:
         context = {
             'post': post
         }
         return render(request, 'room/edit.html', context)
+
 
 
 def delete(request):
