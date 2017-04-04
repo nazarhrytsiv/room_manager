@@ -5,7 +5,21 @@ from .models import Group
 from user.models import User
 
 
-# Create your views here.
+def validate_data_group(group):
+    errors = {}
+    if group['name']:
+        if len(group['name']) > 30:
+            errors['name'] = "Max input length is set to 30 characters."
+    else:
+        errors['name'] = "This field is required."
+    if group['description']:
+        if len(group['description']) > 620:
+            errors['description'] = "Max input length is set to 620 characters."
+    else:
+        errors['description'] = "This field is required."
+    return errors if errors else None
+
+
 
 def groups(request):
     groups = Group.get_all()
@@ -18,9 +32,13 @@ def groups(request):
 def create(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        group = Group(**data)
-        group.save()
-        return HttpResponse(status=201)
+        errors = validate_data_group(data)
+        if not errors:
+            group = User(**data)
+            group.save()
+            return HttpResponse(status=201)
+        else:
+            return HttpResponse(json.dumps(errors), status=400)
     else:
         return render(request, 'group/create.html')
 

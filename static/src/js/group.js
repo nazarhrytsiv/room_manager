@@ -3,7 +3,10 @@
  */
 
 $(document).ready(function () {
-
+    $(".item").on('focus', function () {
+        $(this).removeClass("invalid");
+        $(this).next().addClass("invisible");
+    });
     $('#save_group').on('click', function () {
         var _data = {
             'name': $('#id_name_group').val(),
@@ -14,11 +17,15 @@ $(document).ready(function () {
             url: '/group/create/',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(_data),
-            success: function (respons) {
-                console.log(respons);
+            success: function (response) {
+                console.log('created!');
             },
-            error: function (err) {
-                console.log(err);
+            error: function (data) {
+                errors = JSON.parse(data.responseText);
+                for (let err in errors) {
+                    $("#id_"+err+"_group").addClass("invalid");
+                    $("#id_warning_"+err).text(errors[err]).removeClass("invisible");
+                }
             }
         });
     });
