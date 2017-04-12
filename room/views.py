@@ -72,8 +72,18 @@ def edit(request, pk):
         errors = validate_data_room(data)
         if not errors:
             room = Room(**data)
-            room.save()
-            return HttpResponse(status=201)
+            #checking if we changed name
+            if post.name == data["name"]:
+                room.save()
+                return HttpResponse(status=201)
+            else:
+                try:
+                    room.save()
+                    return HttpResponse(status=201)
+                except IntegrityError:
+                    errors = {}
+                    errors["name"] = "Room with this name already exists."
+                    return HttpResponse(json.dumps(errors), status=400)
         else:
             return HttpResponse(json.dumps(errors), status=400)
     else:

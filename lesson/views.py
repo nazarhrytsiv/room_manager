@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .models import Lesson
+from django.db import IntegrityError
 
 
 def validate_data_lesson(lesson):
@@ -41,10 +42,15 @@ def create(request):
         errors = validate_data_lesson(data)
         if not errors:
             lesson = Lesson(**data)
-            lesson.save()
-            return HttpResponse(status=201)
+            try:
+                lesson.save()
+                return HttpResponse(status=201)
+            except IntegrityError:
+                errors = {}
+                errors["name"] = "Lesson with this name already exists."
+                return HttpResponse(json.dumps(errors), status=400)
         else:
-            return HttpResponse(json.dumps(errors),status=400)
+            return HttpResponse(json.dumps(errors), status=400)
     else:
         return render(request, 'lesson/create.html')
 
@@ -56,8 +62,18 @@ def edit(request, pk):
         errors = validate_data_lesson(data)
         if not errors:
             lesson = Lesson(**data)
-            lesson.save()
-            return HttpResponse(status=201)
+            #checking if we changed name
+            if post.name == data["name"]:
+                lesson.save()
+                return HttpResponse(status=201)
+            else:
+                try:
+                    lesson.save()
+                    return HttpResponse(status=201)
+                except IntegrityError:
+                    errors = {}
+                    errors["name"] = "Lesson with this name already exists."
+                    return HttpResponse(json.dumps(errors), status=400)
         else:
             return HttpResponse(json.dumps(errors), status=400)
     else:

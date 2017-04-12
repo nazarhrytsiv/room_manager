@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from .models import Group
 from user.models import User
+from django.db import IntegrityError
 
 
 def validate_data_group(group):
@@ -35,8 +36,13 @@ def create(request):
         errors = validate_data_group(data)
         if not errors:
             group = Group(**data)
-            group.save()
-            return HttpResponse(status=201)
+            try:
+                group.save()
+                return HttpResponse(status=201)
+            except IntegrityError:
+                errors = {}
+                errors["name"] = "Group with this name already exists."
+                return HttpResponse(json.dumps(errors), status=400)
         else:
             return HttpResponse(json.dumps(errors), status=400)
     else:
@@ -50,8 +56,18 @@ def edit(request, pk):
         errors = validate_data_group(data)
         if not errors:
             group = Group(**data)
-            group.save()
-            return HttpResponse(status=201)
+            #checking if we changed name
+            if post.name == data["name"]:
+                group.save()
+                return HttpResponse(status=201)
+            else:
+                try:
+                    group.save()
+                    return HttpResponse(status=201)
+                except IntegrityError:
+                    errors = {}
+                    errors["name"] = "Group with this name already exists."
+                    return HttpResponse(json.dumps(errors), status=400)
         else:
             return HttpResponse(json.dumps(errors), status=400)
     else:

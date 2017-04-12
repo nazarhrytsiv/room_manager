@@ -2,6 +2,7 @@ import json
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import User
+from django.db import IntegrityError
 
 
 def validate_data_user(user):
@@ -48,8 +49,13 @@ def create(request):
         errors = validate_data_user(data)
         if not errors:
             user = User(**data)
-            user.save()
-            return HttpResponse(status=201)
+            try:
+                user.save()
+                return HttpResponse(status=201)
+            except IntegrityError:
+                errors = {}
+                errors["username"] = "User with this username already exists."
+                return HttpResponse(json.dumps(errors), status=400)
         else:
             return HttpResponse(json.dumps(errors), status=400)
     else:
@@ -63,8 +69,18 @@ def edit(request, pk):
         errors = validate_data_user(data)
         if not errors:
             user = User(**data)
-            user.save()
-            return HttpResponse(status=201)
+            #checking if we changed name
+            if post.name == data["username"]:
+                user.save()
+                return HttpResponse(status=201)
+            else:
+                try:
+                    user.save()
+                    return HttpResponse(status=201)
+                except IntegrityError:
+                    errors = {}
+                    errors["username"] = "User with this username already exists."
+                    return HttpResponse(json.dumps(errors), status=400)
         else:
             return HttpResponse(json.dumps(errors), status=400)
     else:
