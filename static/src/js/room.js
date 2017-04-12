@@ -20,8 +20,9 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(_data),
             async: false,
-            success: function (_data) {
-                console.log('created!');
+            success: function (obj) {
+                //data = JSON.parse(obj);
+                console.log(obj);
             },
             error: function (data) {
                 errors = JSON.parse(data.responseText);

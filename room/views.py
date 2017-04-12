@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.urlresolvers import reverse
 from .models import Room
-from django.http import HttpResponse,JsonResponse
+from django.http import HttpResponse,JsonResponse,HttpResponseRedirect
 import json
+from django.db import IntegrityError
 
 
 # Create your views here.
@@ -36,15 +38,19 @@ def validate_data_room(room):
     return errors if errors else None
 
 
-
 def create(request):
     if request.method == "POST":
         data = json.loads(request.body)
         errors = validate_data_room(data)
         if not errors:
             room = Room(**data)
-            room.save()
-            return HttpResponse(status=201)
+            try:
+                room.save()
+                return HttpResponse(status=201)
+            except IntegrityError:
+                errors = {}
+                errors["name"] = "Room with this name already exists."
+                return HttpResponse(json.dumps(errors), status=400)
         else:
             return HttpResponse(json.dumps(errors), status=400)
     else:
