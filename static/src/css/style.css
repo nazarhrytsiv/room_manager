@@ -78,6 +78,13 @@
     border: 2px solid rgba(217, 0, 0, 0.56);
 }
 
+.valid {
+    outline-offset: -2px;
+    outline :  none;
+    box-shadow: 0 0 5px rgb(27, 238, 107);
+    border: 2px solid rgba(0, 217, 0, 0.56);
+}
+
 .invisible {
     visibility: hidden;
 }

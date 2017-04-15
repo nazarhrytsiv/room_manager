@@ -8,6 +8,27 @@ $(document).ready(function () {
         $(this).next().addClass("invisible");
     });
 
+    errors_input = new Object();
+
+
+    $(".item").on('input', function () {
+        if ($(this).hasClass("string"))
+        {
+            if (!validate_input_string(this))
+            {
+                errors_input[this["id"]] = false;
+            }
+        }
+        else if ($(this).hasClass("string"))
+        {
+            if (!validate_input_integer(this))
+            {
+                errors_input[this["id"]] = false;
+            }
+        }
+    });
+
+
     $('#save_lesson').on('click', function () {
         var _data = {
             'name': $('#id_name_lesson').val(),
