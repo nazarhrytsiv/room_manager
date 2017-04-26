@@ -10,7 +10,7 @@
 
             <h>Name:</h>
             <label>
-                <input id="id_name_lesson" maxlength="30" name="name" type="text" value="{{ post.name }}" class="item">
+                <input id="id_name_lesson" maxlength="30" name="name" type="text" value="{{ post.name }}" class="item string">
                 <p id="id_warning_name" class="invisible warning-text">This should warn you!!!</p>
             </label>
         </div>
@@ -19,14 +19,14 @@
             <h>Place:</h>
             <label>
                 <input id="id_place_lesson" maxlength="30" name="place" type="text" value="{{ post.place }}"
-                       class="item">
+                       class="item string">
                 <p id="id_warning_place" class="invisible warning-text">This should warn you!!!</p>
             </label>
         </div>
         <div class="line">
             <h> Description:</h>
             <label><textarea cols="40" id="id_description_lesson" maxlength="620" name="description"
-                             rows="10" class="item">{{ post.description }}</textarea>
+                             rows="10" class="item string">{{ post.description }}</textarea>
                 <p id="id_warning_description" class="invisible warning-text">This should warn you!!!</p>
             </label>
         </div>
