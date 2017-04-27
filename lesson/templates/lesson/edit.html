@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block content %}
     <div class="post-title">
         <h1>Edit {{ post.name }}</h1>
@@ -34,5 +34,7 @@
 
     </form>
     <button id="update_lesson" class="save btn btn-default" onclick="update_lesson({{ post.id }})">Save</button>
-
+    {% block js %}
+        <script src="{% static 'src/js/lesson.js' %}"></script>
+    {% endblock %}
 {% endblock %}
