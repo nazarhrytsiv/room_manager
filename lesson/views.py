@@ -1,7 +1,8 @@
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
 from .models import Lesson
 from django.db import IntegrityError
 
