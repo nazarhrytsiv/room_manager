@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+User
+{% endblock %}
+
+{% block content %}
+
+
+      <div class="page-header">
+        <h1>User</h1>
+      </div>
+      <div class="row">
+
+        <div class="colon">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nickname</th>
+                <th>Name</th>
+                <!--<th>Group</th>-->
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+
+    <tr id="hide_{{ user.id }}" xmlns="http://www.w3.org/1999/html">
+
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+		<td>{{ user.name }}</td>
+        <!--<td>{{ user.group }}</td>-->
+        <td>{{ user.email }}</td>
+
+    <td style="width: 150px">
+        <!--<a href="{{user.id }}/edit/" ><button type="button" class="btn btn-sm btn-warning">Edit</button></a>-->
+      <button class="btn btn-primary btn-sm" onclick="add_member_to_group({{user.id }},{{ group.id }})">
+                Add
+      </button>
+
+
+
+
+    </td>
+  </tr>
+
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">No Users</td>
+  </tr>
+{% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+     <!-- /container -->
+
+{% endblock %}

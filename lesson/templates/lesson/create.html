@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="post-title">
+        <h1>New lesson</h1>
+    </div>
+    <div class="spacer"></div>
+    <form class="post-form">
+        <div class="line">
+
+            <h>Name:</h>
+            <label class="item_label">
+                <input id="id_name_lesson" maxlength="30" name="name" type="text" class="item string">
+                <p id="id_warning_name" class="invisible warning-text">This should warn you!!!</p>
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Place:</h>
+            <label>
+                <input id="id_place_lesson" maxlength="30" name="place" type="text" class="item string">
+                <p id="id_warning_place" class="invisible warning-text">This should warn you!!!</p>
+            </label>
+        </div>
+        <div class="line">
+            <h> Description:</h>
+            <label><textarea cols="40" id="id_description_lesson" maxlength="620" name="description"
+                             rows="10" class="item string"></textarea>
+                <p id="id_warning_description" class="invisible warning-text">This should warn you!!!</p>
+            </label>
+        </div>
+
+
+    </form>
+
+    <button id="save_lesson" class="save btn btn-default">Save</button>
+    {% block js %}
+        <script src="{% static 'src/js/lesson.js' %}"></script>
+    {% endblock %}
+{% endblock %}
+

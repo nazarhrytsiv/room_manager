@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Group
+{% endblock %}
+
+{% block content %}
+
+
+      <div class="page-header">
+        <h1>Group</h1>
+      <p>
+          <a href="/group/create/" > <button type="button" class="btn btn-sm btn-primary">+ New group</button></a>
+      </p>
+      </div>
+      <div class="row">
+
+        <div class="colon">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Captain</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for group in groups %}
+
+<tr id="hide_{{group.id}}" xmlns="http://www.w3.org/1999/html">
+
+    <td>{{ group.id }}</td>
+    <td>{{ group.name }}</td>
+    <td>{{ group.captain }}</td>
+
+    <td style="width: 180px">
+        <a href="show_group/{{group.id }}">
+            <button type="button" class="btn btn-sm btn-info">Info</button>
+        </a>
+        <a href="{{group.id }}/edit/">
+            <button type="button" class="btn btn-sm btn-warning">Edit</button>
+        </a>
+
+
+    </td>
+</tr>
+
+{% empty %}
+<tr>
+    <td colspan="8" class="text-center bg-warning">No Groups</td>
+</tr>
+{% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+     <!-- /container -->
+
+{% endblock %}

@@ -1,11 +1,12 @@
 from django.db import models
 
+
 # Create your models here.
 
 class Room(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     type = models.CharField(max_length=10)
-    desription = models.TextField()
+    description = models.TextField()
     size = models.IntegerField()
 
     def __str__(self):
@@ -20,3 +21,21 @@ class Room(models.Model):
         except:
             return False
 
+    @staticmethod
+    def get_all():
+        rooms = Room.objects.all()
+        return rooms
+
+    @staticmethod
+    def get_by_id(pk):
+        try:
+            return  Room.objects.get(pk=pk)
+        except:
+            return None
+
+    @staticmethod
+    def get_by_room_name(room):
+        try:
+            return Room.objects.get(name=room)
+        except:
+            return None

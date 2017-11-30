@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="post-title">
+        <h1>Edit lecture</h1>
+    </div>
+    <div class="spacer"></div>
+    <form class="post-form">
+        <div class="line">
+
+            <h>Lesson:</h>
+            <label>
+                <select id="id_lesson_lecture">
+                    {% for lesson in lessons %}
+                        <option>{{ lesson.name }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Group:</h>
+            <label>
+                <select id="id_group_lecture">
+                    {% for group in groups %}
+                        <option>{{ group.name }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        <div class="line">
+        <h> Room:</h>
+        <label>
+                <select id="id_room_lecture">
+                    {% for room in rooms %}
+                        <option>{{ room.name }}</option>
+                    {% endfor %}
+                </select>
+        </label>
+    </div>
+        <div class="line">
+
+            <h>Teacher:</h>
+            <label>
+                <select id="id_teacher_lecture">
+                    {% for teacher in teachers %}
+                        <option>{{ teacher.name }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Number by schedule:</h>
+            <label>
+                <input id="id_number_by_schedule_lecture" maxlength="30"  type="text" class="item">
+                <p id="id_warning_number_by_schedule" class="invisible warning-text">This should warn you!!!</p>
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Date and time:</h>
+            <label>
+                <input id="id_date_time_lecture" type="datetime-local">
+            </label>
+        </div>
+
+    </form>
+    <button id="update_lecture" class="save btn btn-default" onclick="update_lecture({{ post.id }})">Save</button>
+
+{% endblock %}

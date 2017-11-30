@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+Group
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+        <h1>{{ group.name }}
+            <button type="button"
+                class="btn btn-danger btn-sm js-delete-book"
+                onclick="delete_group({{group.id }})">
+                <span class="glyphicon glyphicon-trash"></span> Delete
+            </button>
+        </h1>
+
+</div>
+    <div class="description">
+    <img src="{% static group.img %}" class="responsive-img"  alt="face">
+
+        <div class="name">
+    <div class="panel panel-default">
+  <div class="panel-body">
+    Description:{{ group.description }}
+  </div>
+    </div>
+</div>
+
+    </div>
+
+    <div class="panel panel-default">
+  <!-- Default panel contents -->
+
+  <div class="panel-heading">MEMBERS:
+      <a href="/group/{{ group.id }}/add_member/" > <button type="button" class="btn btn-sm btn-primary">Add member</button></a>
+  </div>
+  <!-- List group -->
+        {% for user in users %}
+            <ul class="list-group">
+                <li class="list-group-item">
+                {{ user.username }}
+                </li>
+            </ul>
+        {% endfor %}
+</div>
+{% endblock %}

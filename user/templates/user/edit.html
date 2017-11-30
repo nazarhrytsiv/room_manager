@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="post-title">
+        <h1>Edit {{ post.username }}</h1>
+    </div>
+    <div class="spacer"></div>
+    <form class="post-form">
+        <div class="line">
+
+            <h>Username:</h>
+            <label>
+                <input id="id_username_user" maxlength="30" name="username" type="text" value="{{ post.username }}" class="item">
+                <p id="id_warning_username" class="invisible warning-text">This should warn you!!!</p>
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Name:</h>
+            <label>
+                <input id="id_name_user" maxlength="30" name="name" type="text" value="{{ post.name }}" class="item">
+                <p id="id_warning_name" class="invisible warning-text">This should warn you!!!</p>
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Email:</h>
+            <label>
+                <input id="id_email_user" maxlength="30" name="email" type="text"value="{{ post.email }}" class="item">
+                <p id="id_warning_email" class="invisible warning-text">This should warn you!!!</p>
+            </label>
+        </div>
+        <div class="line">
+
+            <h>New password:</h>
+            <label>
+                <input id="id_password_user" maxlength="30" name="password" type="password" class="item">
+                <p id="id_warning_password" class="invisible warning-text">This should warn you!!!</p>
+            </label>
+        </div>
+
+    </form>
+    <button id="update_user" class="save btn btn-default" onclick="update_user({{ post.id }})">Save</button>
+
+
+{% endblock %}

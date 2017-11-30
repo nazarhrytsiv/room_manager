@@ -21,6 +21,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('room.urls')),
     url(r'^lesson/', include('lesson.urls')),
-    url(r'^user/' , include('user.urls')),
+    url(r'^user/', include('user.urls')),
     url(r'^room/', include('room.urls')),
+    url(r'^group/', include('group.urls')),
+    url(r'^lecture/', include('lecture.urls')),
+    url(r'^schedule/', include('schedule.urls')),
 ]

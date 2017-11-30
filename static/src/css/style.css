@@ -1,0 +1,106 @@
+.description{
+    width: 100%;
+    display: inline-flex;
+}
+
+.name{
+    width: 100%;
+    height: 100%;
+    margin-left: 5px;
+}
+.responsive-img{
+    max-height: 150px;
+    max-width: 150px;
+}
+
+.panel-body{
+    padding: 15px;
+    height: 150px;
+}
+
+.post-form{
+    display: block;
+}
+
+#id_name , #id_type, #id_description{
+    font-family: "Cuprum", serif;
+    font-size: 14px;
+    color: #000;
+    font-weight: normal;
+}
+
+
+.full-story {
+        font-size: 16px;
+}
+
+.post-title {
+    font-size: 19px;
+    color: rgb(130, 129, 128);
+    text-decoration: none;
+    line-height: 25px;
+    padding-left: 0px;
+}
+
+.spacer {
+    border-bottom: 1px dashed #f3f3f3;
+    padding: 2px 0px 5px;
+}
+
+
+.line {
+    overflow: hidden;
+    padding: 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
+}
+
+
+.line h {
+    width: 100px;
+    float: left;
+    padding: 3px 0;
+}
+
+
+.btn-default{
+    margin-top: 5px;
+}
+
+
+/* validate room-create*/
+
+
+.invalid {
+    outline-offset: -2px;
+    outline :  none;
+    box-shadow: 0 0 5px rgb(238, 110, 96);
+    border: 2px solid rgba(217, 0, 0, 0.56);
+}
+
+.valid {
+    outline-offset: -2px;
+    outline :  none;
+    box-shadow: 0 0 5px rgb(27, 238, 107);
+    border: 2px solid rgba(0, 217, 0, 0.56);
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.warning-text {
+    color: #ee4845;
+}
+/**********************/
+
+
+
+
+
+
+
+
+
+
+

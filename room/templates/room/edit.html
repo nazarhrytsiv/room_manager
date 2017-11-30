@@ -1,9 +1,44 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>New post</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+    <div class="post-title">
+        <h1>Edit {{ post.name }}</h1>
+    </div>
+    <div class="spacer"></div>
+    <form class="post-form">
+        <div class="line">
+
+            <h>Name:</h>
+            <label>
+                <input id="id_name_room" maxlength="30" name="name" type="text" value="{{ post.name }}" class="item">
+                <p id="id_warning_name" class="invisible warning-text">This should warn you!!!</p>
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Type:</h>
+            <label>
+                <input id="id_type_room" maxlength="30" name="type" type="text" value="{{ post.type }}" class="item">
+                <p id="id_warning_type" class="invisible warning-text">This should warn you!!!</p>
+            </label>
+        </div>
+        <div class="line">
+            <h> Description:</h>
+            <label><textarea cols="40" id="id_description_room" maxlength="620" name="description"
+                             rows="10" class="item">{{ post.description }}</textarea>
+                <p id="id_warning_description" class="invisible warning-text">This should warn you!!!</p>
+            </label>
+        </div>
+        <div class="line">
+
+            <h>Size:</h>
+            <label>
+                <input id="id_size_room" maxlength="30" name="size" type="text" value="{{ post.size }}" class="item">
+                <p id="id_warning_size" class="invisible warning-text">This should warn you!!!</p>
+            </label>
+        </div>
+
     </form>
+    <button id="update_room" class="save btn btn-default" onclick="update_room({{ post.id }})">Save</button>
+
 {% endblock %}
